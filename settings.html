@@ -20,34 +20,35 @@
 </head>
 <body>
 
-
-  <button type="button" id="settingsBtn" class="btn btn-secondary settingsBtn"><img class="settingsImg" src="./assets/images/settings.png"></button>
-
-<div>&nbsp;</div>
-
-   <input oninput="this.value = this.value.toUpperCase()" id="search-text" class="destination">
-    <button id="search-submit">Search for a City</button>
+<button type="button" id="homeBtn" class="btn btn-secondary settingsBtn"><img class="settingsImg" src="./assets/images/home.png"></button>
 
 <div>&nbsp;</div>
 
-<section id="hidden" class="card">                                   <!-- SEARCH RESULTS -->
-    <div><h3>Search Results</h3></div>
-    <a id="resultsPage" class="search-results">City & Country Name 1</a>
-    <div class="search-results">information...</div>
-    <div>&nbsp;</div>
-    <a id="resultsPage" class="search-results">City & Country Name 2</a>
-    <div class="search-results">information...</div>
-    <div>&nbsp;</div>
-    <a id="resultsPage" class="search-results">City & Country Name 3</a>
-    <div class="search-results">information...</div>
-    <div>&nbsp;</div>
-</section>
+  <h3>Settings</h3>
+  
+<div>&nbsp;</div>
+
+<form id="tempDefault">
+  <label><b>Default Temprature: </b></label>
+  <label><input id="tempC" type="radio" name="temp" value="celsius"> Celsius (C)</label>
+  <label><input id="tempF" type="radio" name="temp" value="fahrenheit"> Fahrenheit (F)</label>
+</form>
+  
+<div>&nbsp;</div>
+
+<label><b>Default Currency: </b></label>
+<select id="selectCurrencyDefault" name="Selector" ></select>
 
 <div>&nbsp;</div>
 
+  <label>
+      <b>Historic Searches: </b></label>
+    <button class="settingsField" id="delSearchHistory">Delete History</button>
+
+<div>&nbsp;</div>
 
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="./assets/js/script.js"></script>
+<script src="./assets/js/settings.js"></script>
 </html>

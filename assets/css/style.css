@@ -1,0 +1,176 @@
+      /* Settings */
+      .settingsBtn {
+        position: absolute;
+        right: 5px;
+        margin: 5px;
+        width: 25px;
+        height: 25px;
+      }
+
+      .homeBtn {
+        position: absolute;
+        right: 40px;
+        margin: 5px;
+        width: 25px;
+        height: 25px;
+      }
+      .settingsImg {
+        position: absolute;
+        right: 0;
+        margin-right: 5px;
+        margin-top: -7.5px;
+        width: 15px;
+        height: 15px;
+      }
+      
+      /* Tooltip text */
+      .card .tooltext {
+        visibility: hidden;
+        width: 200px;
+        background-color: blue;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 10px; 
+       
+        /* Position the tooltip text - see examples below! */
+        position:relative;
+      } 
+      
+      .card .tooltext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 10%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: blue transparent transparent transparent;
+      }
+
+      /* Show the tooltip text when you mouse over the tooltip container */
+      .card:hover .tooltext {
+        visibility: visible;
+      }
+
+      #currIndicator {
+        height: 15px;
+        width: 15px;
+      }
+
+      .settingsField {
+        width: 200px;
+      }
+
+
+      /* TOGGLE SWITCH */
+
+      /* CSS rules are kept repetitive so that you can get CSS rules for each button easily :) */
+
+* {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  margin: 5px;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: #f1f9f9;
+}
+
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  position: relative;
+  top: 50%;
+  width: 74px;
+  height: 36px;
+  margin: -20px auto 0 auto;
+  overflow: hidden;
+}
+
+.button.r,
+.button.r .layer {
+  border-radius: 100px;
+}
+
+.button.b2 {
+  border-radius: 2px;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #ebf7fc;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+/* Button 1 */
+#button-1 .knobs:before {
+  content: "C";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 30px;
+  height: fit-content;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 9px 4px;
+  background-color: #03a9f4;
+  border-radius: 50%;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#button-1 .checkbox:checked + .knobs:before {
+  content: "F";
+  left: 42px;
+  background-color: #03a9f4;
+}
+
+#button-1 .checkbox:checked ~ .layer {
+  background-color: #fcebeb;
+}
+
+#button-1 .knobs,
+#button-1 .knobs:before,
+#button-1 .layer {
+  transition: 0.3s ease all;
+}
+
+#hidden {
+  visibility: hidden;
+}
+
+#show {
+  visibility: visible;
+}
