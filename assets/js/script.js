@@ -36,6 +36,19 @@ window.location.replace("./settings.html");
 // END TRIGGER BUTTON - ALL SEARCHES
 
 
+// HISTORY
+
+      // get previous searches and create dropdown
+      $(function () {
+        var dropdownHistory = JSON.parse(localStorage.getItem('searchHistory'));
+        $('#search-text').autocomplete({
+          source: dropdownHistory,
+          minLength: 0,
+        });
+      }); 
+
+// END HISTORY ..................................................
+
 // TRIGGER SELECTED OPTION RESULTS
 
   var resultsp = document.getElementById("resultsPage")

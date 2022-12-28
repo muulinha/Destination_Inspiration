@@ -84,18 +84,7 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
 
 
 
-    // HISTORY
-
-      // get previous searches and create dropdown
-      $(function () {
-        var dropdownHistory = JSON.parse(localStorage.getItem('searchHistory'));
-        $('#search-text').autocomplete({
-          source: dropdownHistory,
-          minLength: 0,
-        });
-      }); 
-
-    // END HISTORY ..................................................
+   
 
 
     // CONVERT CURRENCY CODE TO VALUES
@@ -105,27 +94,42 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
     
       // get base to destination conversion
       var baseCurr = localStorage.getItem('currency');
-      var destCurr = "GBP";
-      var nameCurr = document.querySelector(".currencyName");        // get name from weather country information
+      var destCurr = "JPY";
+      //var nameCurr = document.querySelector(".currencyName");        // get name from weather country information
       var currentCurr = document.querySelector(".conversionRate");
       var lastCurr = document.querySelector(".lastRate");
       var differenceCurr = document.querySelector(".oneMonthChange");
       var upDown = document.querySelector(".upDownChange");
 
+      var nameCurr = document.querySelector(".currencyName");
+      var nameCurrShort = document.querySelector(".currencyNameShort");
+      var currSymbolID = document.querySelector(".currencySymbol");
+      var currFlagUrl = document.querySelector(".currencyName");
+
       //nameCurr.innerHTML = "Currency Name Here";    // get from weather information
   
       // rate now
       function fetchCurrency() {
-        fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/pair/${baseCurr}/${destCurr}`)
+        fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/enriched/${baseCurr}/${destCurr}`)
         .then((res) => res.json())
         .then((data) => {
         console.log(data);
         const currentRate = data.conversion_rate;
         const lastUpdate = data.time_last_update_utc;
-        
+        const currNameFull = data.target_data.currency_name;
+        const currNameShort = data.target_data.currency_name_short;
+        const currSymbol = data.target_data.display_symbol;
+        const currFlag = data.target_data.flag_url;      
+
+          // country & currency information
+          nameCurr.innerHTML = (currNameFull) ;
+          document.querySelector(".currencyFlag").src = currFlag;
+          nameCurrShort.innerHTML = ("(" + currNameShort + " &#x" + currSymbol + ")") ;
+
           // rate now - html text
           currentCurr.innerHTML = ("Current Exchange Rate: " +baseCurr + " 1 = " + destCurr + " " + (currentRate).toFixed(4));
           currentCurr = ("Current Exchange Rate: " +baseCurr + " 1 = " + destCurr + " " + (currentRate).toFixed(4));
+          
 
         // set previous month date
         var newDate = dayjs(lastUpdate);
@@ -155,7 +159,7 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
           console.log(data);
           
           //const histRate = `data.conversion_rates.${destCurr}`    // WHY IS THIS NOT WORKING, ARG!!
-          const histRate = data.conversion_rates.GBP ;            // dest currency should be here, why is it not working!!!!!!!!!!!!!!!!!!!
+          const histRate = data.conversion_rates.JPY ;            // dest currency should be here, why is it not working!!!!!!!!!!!!!!!!!!!
           console.log(histRate);
           console.log(typeof(histRate));
           
@@ -163,7 +167,7 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
           lastCurr = ("Last Month Rate: " + baseCurr + " 1 = " + destCurr + " " + (histRate).toFixed(4));
 
           // rate difference - html text
-          var diff = ((currentRate - histRate)*100).toFixed(2) + "%";
+          var diff = ((currentRate - histRate)/histRate).toFixed(2) + "%";
           differenceCurr.innerHTML = "One Month Change: " + diff;
 
           if (currentRate === histRate) {
@@ -205,7 +209,7 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
     if(localStorage.getItem('selectedCity') == null) {
     localStorage.setItem('selectedCity', 'Perth,AU')
     }    
-    fetchCurrency()
+    fetchCurrency();
     // ADD ADDITIONAL TRIGGER FUNCTIONS ON SEARCH HERE                     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     };
 
