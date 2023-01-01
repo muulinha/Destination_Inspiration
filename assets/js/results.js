@@ -94,13 +94,11 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
     
       // get base to destination conversion
       var baseCurr = localStorage.getItem('currency');
-      var destCurr = "JPY";
-      //var nameCurr = document.querySelector(".currencyName");        // get name from weather country information
+      var destCurr = 'THB';              //NEED DEST CURRENCY FROM WEATHER > COUNTRIES API             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       var currentCurr = document.querySelector(".conversionRate");
       var lastCurr = document.querySelector(".lastRate");
       var differenceCurr = document.querySelector(".oneMonthChange");
       var upDown = document.querySelector(".upDownChange");
-
       var nameCurr = document.querySelector(".currencyName");
       var nameCurrShort = document.querySelector(".currencyNameShort");
       var currSymbolID = document.querySelector(".currencySymbol");
@@ -124,7 +122,21 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
           // country & currency information
           nameCurr.innerHTML = (currNameFull) ;
           document.querySelector(".currencyFlag").src = currFlag;
-          nameCurrShort.innerHTML = ("(" + currNameShort + " &#x" + currSymbol + ")") ;
+          nameCurrShort.innerHTML = ("(" + currNameShort + ")");
+          
+          //nameCurrShort.innerHTML = ("(" + currNameShort + " &#x" + currSymbol + ")") ;
+          //nameCurrShort.innerHTML = ("(" + currNameShort +  + ")");
+          var splitCurrSymbol = currSymbol.split(",");
+          console.log(splitCurrSymbol);
+
+          for (var i = 0; i < splitCurrSymbol.length; i++) { 
+            //currText += ("&#x" + splitCurrSymbol[i] + ";");
+            var nameCurrShort12 = ("&#x" + splitCurrSymbol[i] + ";");
+            console.log(nameCurrShort12);
+            }
+
+      
+
 
           // rate now - html text
           currentCurr.innerHTML = ("Current Exchange Rate: " +baseCurr + " 1 = " + destCurr + " " + (currentRate).toFixed(4));
@@ -138,15 +150,12 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
         var newYear = newDate.$y;
           
           // if month is January then previous month to December and year to previous year
-          if(newMonth === 1) {
+          if(newMonth === 0) {
             newMonth = 12;
+            newYear = newDate.$y-1;
           }
           else {
-            newMonth = newMonth;
-          }
-
-          if(newMonth === 1) {
-            newYear = newDate.$y-1;
+            newMonth = newMonth+1;
           }
             
           var prevMonthDate = dayjs(`${newMonth}-${newDay}-${newYear}`, "MM-DD-YYYY")
@@ -158,8 +167,8 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
         .then((data) => {
           console.log(data);
           
-          //const histRate = `data.conversion_rates.${destCurr}`    // WHY IS THIS NOT WORKING, ARG!!
-          const histRate = data.conversion_rates.JPY ;            // dest currency should be here, why is it not working!!!!!!!!!!!!!!!!!!!
+          //get destination currency
+          var histRate = data.conversion_rates[destCurr];
           console.log(histRate);
           console.log(typeof(histRate));
           
@@ -167,7 +176,7 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
           lastCurr = ("Last Month Rate: " + baseCurr + " 1 = " + destCurr + " " + (histRate).toFixed(4));
 
           // rate difference - html text
-          var diff = ((currentRate - histRate)/histRate).toFixed(2) + "%";
+          var diff = ((currentRate - histRate)/histRate).toFixed(4) + "%";
           differenceCurr.innerHTML = "One Month Change: " + diff;
 
           if (currentRate === histRate) {
