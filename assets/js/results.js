@@ -201,6 +201,37 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
 
     // END CONVERT CURRENCY CODE TO VALUES .................................................. 
 
+    // YOUTUBE VIDEO 
+    var videoSearch = document.getElementById("video-search");
+    var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
+
+    function youTubeAPI(){
+      var request=
+      "https://youtube.googleapis.com/youtube/v3/search?key=" +
+      youTubeKey +
+      "&type=video&part=snippet&maxResults=1" +
+      "&q=" +
+      "10 best things to do" + "rome" //hardcode until we get the user destination
+      
+      //searchInput.value; user destination
+      console.log(request)
+  
+      fetch(request)   
+      .then(function(respose) {
+              return respose.json();  
+          })
+      .then(function(data){
+              
+          let video =data.items[0].id.videoId;
+          console.log(data);
+              
+          //show youTube video in html:
+          videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
+          })
+     
+      }
+
+    // END YOUTUBE VIDEO 
 
     // INIT
 
@@ -219,6 +250,8 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
     localStorage.setItem('selectedCity', 'Perth,AU')
     }    
     fetchCurrency();
+    youTubeAPI();
+
     // ADD ADDITIONAL TRIGGER FUNCTIONS ON SEARCH HERE                     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     };
 
