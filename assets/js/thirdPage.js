@@ -1,93 +1,116 @@
-// HOME AND SETTINGS BUTTON
+var select = document.getElementById("selectCurrencyDefault");
+var defaultValuesEl = document.querySelector('.defaultValues');
 
-    var hmOptionDisp = document.querySelector("#homeBtnDisp");
-    var seOptionDisp = document.querySelector("#settingsBtnDisp");
 
-    // on click go to home page
-    hmOptionDisp.addEventListener("click", function(event) {
-    window.location.replace("./index.html");
-    }); 
+var currencySelection = ["AED", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN", "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB", "BRL", "BSD", "BTN", "BWP", "BYN", "BZD", "CAD", "CDF", "CHF", "CLP", "CNY", "COP", "CRC", "CUP", "CVE", "CZK", "DJF", "DKK", "DOP", "DZD", "EGP", "ERN", "ETB", "EUR", "FJD", "FKP", "FOK", "GBP", "GEL", "GGP", "GHS", "GIP", "GMD", "GNF", "GTQ", "GYD", "HKD", "HNL", "HRK", "HTG", "HUF", "IDR", "ILS", "IMP", "INR", "IQD", "IRR", "ISK", "JEP", "JMD", "JOD", "JPY", "KES", "KGS", "KHR", "KID", "KMF", "KRW", "KWD", "KYD", "KZT", "LAK", "LBP", "LKR", "LRD", "LSL", "LYD", "MAD", "MDL", "MGA", "MKD", "MMK", "MNT", "MOP", "MRU", "MUR", "MVR", "MWK", "MXN", "MYR", "MZN", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD", "OMR", "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON", "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLE", "SOS", "SRD", "SSP", "STN", "SYP", "SZL", "THB", "TJS", "TMT", "TND", "TOP", "TRY", "TTD", "TVD", "TWD", "TZS", "UAH", "UGX", "USD", "UYU", "UZS", "VES", "VND", "VUV", "WST", "XAF", "XCD", "XDR", "XOF", "XPF", "YER", "ZAR", "ZMW", "ZWL"];
 
-    // on click go to settings page
-    seOptionDisp.addEventListener("click", function(event) {
-    window.location.replace("./settings.html");
-    }); 
+for (var i = 0; i < currencySelection.length; i++) {
+  var opt = currencySelection[i];
+  var el = document.createElement("a");
+  el.setAttribute("class", "dropdown-item");
+  el.setAttribute('id', 'currencyOptions')
+  el.textContent = opt;
+  select.appendChild(el);
+}
+// on change update default currency
+            
+var selector = document.querySelectorAll("#currencyOptions"); 
 
-// END HOME AND SETTINGS BUTTON
+Array.from(selector).forEach((element) => {
+    element.addEventListener('click', (event) => {
+      localStorage.setItem('currency',`${event.target.innerText}`);
+      var defaultCurrencyEl = document.createElement('h4');
+      
+    });
+  });
+
+
+var tempForm = document.getElementById("tempDefault");
+
+        // when client clicked on select element 
+        tempForm.addEventListener("click", () => {
+        // if default value is changed
+        tempForm.addEventListener("change", () => {
+            // if value switched by client
+                localStorage.setItem("temp",tempForm.elements["temp"].value);
+            });
+        });
+        
+
+        // delete search history data only
+
+        var delForm = document.querySelector("#delSearchHistory");
+
+        delForm.addEventListener("click", function(event) {
+            localStorage.removeItem('searchHistory');
+            localStorage.removeItem('lastSearch');
+        });     
+
+        // HISTORY
+
+        // get stored information
+        function init() {
+                    
+            var storedTemp = localStorage.getItem('temp');
+            var storedCurrency = localStorage.getItem('currency');
+    
+            radiobtnC = document.getElementById("tempC");
+            radiobtnF = document.getElementById("tempF");
+    
+            // set default temp to celsius
+            if(localStorage.getItem('temp') == null) {
+            localStorage.setItem('temp', 'celsius')
+            }
+            // set default currency to AUD
+            if(localStorage.getItem('currency') == null) {
+            localStorage.setItem('currency', 'AUD')
+            }
+            // does array aleady exist
+            if(localStorage.getItem('selectedCity') == null) {
+            localStorage.setItem('selectedCity', 'Perth,AU')
+            }
+    
+            console.log(storedTemp);
+    
+            if (storedTemp === 'celsius') {
+            radiobtnC.checked = true;
+            //radiobtnF.checked = false;
+            } else {
+            //radiobtnC.checked = false;
+            radiobtnF.checked = true;
+            }   
+    
+      
+            console.log(storedTemp);
+            console.log(storedCurrency);
+    
+            };
+    
           
+            // delete search history data only
+    
+            var delForm = document.querySelector("#delSearchHistory");
+    
+            delForm.addEventListener("click", function(event) {
+                localStorage.removeItem('searchHistory');
+                localStorage.removeItem('lastSearch');
+            });     
+    
+        // END HISTORY ..................................................
+    
+        init();
 
-var cityName = document.querySelector(".city-name");
-var countryName = document.querySelector(".country-name");
+        // Display defalut values on the page for a user
+        // var savedTemp = localStorage.getItem('temp');
+        // console.log(savedTemp)
+        // var savedCurrency = localStorage.getItem('currency');
+        // console.log(savedCurrency)
+        // var defaultValues = document.createElement('p');
+        // defaultValues.appendChild(savedTemp);
+        // defaultValues.appendChild(savedCurrency);
+        // defaultValuesEl.appendChild(defaultValues)
 
-var rapidAPI = "794142a626ce62e5a3897b2a34ca54fe";
-
-
-function fetchWeather(city) {
-    // fetch("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&limit=99&units=metric&appid=" + this.APIKey)
-    fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + "perth" + '&limit=99&appid=' + this.rapidAPI)
-  
-    // http://api.openweathermap.org/geo/1.0/direct?q=perth&limit=99&appid=794142a626ce62e5a3897b2a34ca54fe
-
-    .then((res) => res.json())
-    .then((data) => {
-      //   console.log(data);
-      const city = data[0].name;
-      const country = data[0].country;
-
-      cityName.innerHTML = city;
-      countryName.innerHTML = country;
-      console.log(country);
-})}
-
-
-
-
-  fetchWeather();
-// COUNTRY CODE OUTPUT
-
-
-
-
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '576a507ee7msh03a8d40416350bbp1e0201jsnbd061cc4d364',
-		'X-RapidAPI-Host': 'countries-cities.p.rapidapi.com'
-	}
-};
-
-fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
-	.then(response => response.json())
-	.then(response => console.log(response))
-	.catch(err => console.error(err));
-    // CURRENCY CODE OUTPUT
-
-    // https://countries-cities.p.rapidapi.com/location/country/GB/576a507ee7msh03a8d40416350bbp1e0201jsnbd061cc4d364
-
-
-    // COUNTRIES LIST
-
-      fetch('https://countries-cities.p.rapidapi.com/location/country/list', options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err))
- 
-        // get list of names in dropdown
-
-
-    // END COUNTRIES LIST
-
-
-
-
-
-
-
-
-   
-
-
-    // CONVERT CURRENCY CODE TO VALUES
+            // CONVERT CURRENCY CODE TO VALUES
 
       var apiKey = "458a98f2a689492e06753a30";
     
@@ -107,6 +130,8 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
       //nameCurr.innerHTML = "Currency Name Here";    // get from weather information
   
       // rate now
+      fetchCurrency();
+      
       function fetchCurrency() {
         fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/enriched/${baseCurr}/${destCurr}`)
         .then((res) => res.json())
@@ -205,6 +230,8 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
     var videoSearch = document.getElementById("video-search");
     var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
 
+    
+
     function youTubeAPI(){
       var request=
       "https://youtube.googleapis.com/youtube/v3/search?key=" +
@@ -231,30 +258,5 @@ fetch('https://countries-cities.p.rapidapi.com/location/country/GB', options)
      
       }
 
+      youTubeAPI();
     // END YOUTUBE VIDEO 
-
-    // INIT
-
-  function init() {
-
-    // set default temp to celsius
-    if(localStorage.getItem('temp') == null) {
-    localStorage.setItem('temp', 'celsius')
-    }
-    // set default currency to AUD
-    if(localStorage.getItem('currency') == null) {
-    localStorage.setItem('currency', 'AUD')
-    }
-    // does array aleady exist
-    if(localStorage.getItem('selectedCity') == null) {
-    localStorage.setItem('selectedCity', 'Perth,AU')
-    }    
-    fetchCurrency();
-    youTubeAPI();
-
-    // ADD ADDITIONAL TRIGGER FUNCTIONS ON SEARCH HERE                     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    };
-
-// END INIT
-
-init();
