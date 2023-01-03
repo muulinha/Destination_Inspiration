@@ -3,8 +3,11 @@ var searchForm = document.querySelector("#search-submit");
 var searchInput = document.querySelector("#search-text");
 var ourSearchHistory = JSON.parse(localStorage.getItem('seachHistory'));
 
+
 // Add Event Listener to the search sumit button that stores the past searches and redirect to a search result page
-searchForm.addEventListener("click", function(event) {
+searchForm.addEventListener("click", searchForCity);
+
+  function searchForCity (event) {
     event.preventDefault();
 
     // If the value is empty break the function
@@ -17,8 +20,8 @@ searchForm.addEventListener("click", function(event) {
     }
     // redirect to a new page
     window.location.href = "./secondPage.html";
-
-  });
+  };
+  
 
 //   This functions stores all past searched into local storage
   function storeSearch () {
@@ -47,5 +50,32 @@ searchForm.addEventListener("click", function(event) {
       minLength: 0,
     });
   }); 
+
+// Dynamically create buttons for previous searches
+createButtons();
+function createButtons (){
+  var dropdownHistory = JSON.parse(localStorage.getItem('searchHistory'));
+  var searchButtons = document.querySelector('.search-buttons');
+  var searchHeader = document.createElement('h3');
+    searchHeader.textContent = 'Search History';
+    searchButtons.appendChild(searchHeader);
+  for (var i = 0; i < dropdownHistory.length; i++){
+    var searchButton = document.createElement('button');
+    searchButton.textContent = dropdownHistory[i];
+    searchButtons.appendChild(searchButton);
+    searchButton.setAttribute('data-name', dropdownHistory[i])
+    searchButton.addEventListener('click', clickListenerFor(searchButton));
+    }
+  }
+    
+    function clickListenerFor(button){
+      return function (e){
+      var citySearchName = button.dataset.name;
+      console.log(citySearchName);
+      localStorage.setItem('lastSearch', citySearchName);
+      window.location.href = "./secondPage.html";
+    }
+  }
+
 
 // Featch a weather API

@@ -8,7 +8,6 @@ var flag;
 var country;
 
 var userLastSearch = localStorage.getItem("lastSearch");
-console.log(userLastSearch);
 searchInputVal.setAttribute('value', userLastSearch);
 
 searchSubmitEl.addEventListener('click', searchApi);
@@ -20,7 +19,7 @@ function printResults(resultObj) {
     var resultCard = document.createElement('div');
     var resultBody = document.createElement('a');
     resultBody.classList.add('btn', 'btn-light', 'inline');
-    resultBody.setAttribute('href', "3rd HTML")
+    resultBody.setAttribute('href', "../thirdPage.html")
     // needs to direct it to the results page with the country/city input
     resultCard.append(resultBody);
     var titleEl = document.createElement('h3');
@@ -87,6 +86,7 @@ function printResults(resultObj) {
         .then(response => response.json())
         .then(response => {
             flag = response.flag.file;
+            
     });
   };
   // End _________________________________________________________
