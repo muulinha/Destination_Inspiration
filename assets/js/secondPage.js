@@ -5,7 +5,10 @@ var searchInputVal = document.querySelector('#search-input');
 var searchSubmitEl = document.querySelector("#search-submit");
 var rapidAPI = "794142a626ce62e5a3897b2a34ca54fe";
 var flag;
+
 var country;
+var city;
+var state;
 
 var userLastSearch = localStorage.getItem("lastSearch");
 searchInputVal.setAttribute('value', userLastSearch);
@@ -25,10 +28,14 @@ function printResults(resultObj) {
     var titleEl = document.createElement('h3');
     titleEl.textContent = resultObj.name + ", " + resultObj.state + ", " + resultObj.country;
     var imgCountry = document.createElement('img');
-    imgCountry.src = flag;
+    // imgCountry.src = flag;
     // add country flag
     country = resultObj.country;
+    city = resultObj.name;
+    state = resultObj.state;
     console.log(country);
+    console.log(city);
+    console.log(state);
     resultBody.append(titleEl, imgCountry);
     resultContentEl.append(resultCard);
   }
@@ -71,24 +78,27 @@ function printResults(resultObj) {
   }
   // _________________________________________________________________________________
   // _________________________________________________________________________________
+
   searchFormEl.addEventListener('submit', handleSearchFormSubmit);
+
+
   // Fetch from Country-cities API _____________________________
-  async function fetchCountryFlag (){
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '576a507ee7msh03a8d40416350bbp1e0201jsnbd061cc4d364',
-            'X-RapidAPI-Host': 'countries-cities.p.rapidapi.com'
-        }
-    };
-    // https://rapidapi.com/natkapral/api/countries-cities
-    await fetch('https://countries-cities.p.rapidapi.com/location/country/' + "AU", options)
-        .then(response => response.json())
-        .then(response => {
-            flag = response.flag.file;
+  // async function fetchCountryFlag (){
+  //   const options = {
+  //       method: 'GET',
+  //       headers: {
+  //           'X-RapidAPI-Key': '576a507ee7msh03a8d40416350bbp1e0201jsnbd061cc4d364',
+  //           'X-RapidAPI-Host': 'countries-cities.p.rapidapi.com'
+  //       }
+  //   };
+  //   // https://rapidapi.com/natkapral/api/countries-cities
+  //   await fetch('https://countries-cities.p.rapidapi.com/location/country/' + "AU", options)
+  //       .then(response => response.json())
+  //       .then(response => {
+  //           flag = response.flag.file;
             
-    });
-  };
+  //   });
+  // };
   // End _________________________________________________________
 
 
@@ -112,6 +122,8 @@ function printResults(resultObj) {
     .then(response => response.json())
     .then(response => {
       localStorage.setItem('destCountryName', response.countries[destCountry]);
+
+      console.log(destCountry)
     });
 
     // END COUNTRY NAME
@@ -119,13 +131,11 @@ function printResults(resultObj) {
   };
 
 
-
-
-
-
       // store city state and country in local storage
-      localStorage.setItem('selectedCity', "Brisbane")   // Lucus to store city name here!!
-      localStorage.setItem('selectedState', "QLD")   // Lucus to store state name here!!
-      localStorage.setItem('selectedCountry', "AU")   // Lucus to store country code here!!
+      localStorage.setItem('selectedCity', city)   // Lucus to store city name here!!
+      localStorage.setItem('selectedState', state)   // Lucus to store state name here!!
+      localStorage.setItem('selectedCountry',country)   // Lucus to store country code here!!
 
       fetchCountry();
+
+      
