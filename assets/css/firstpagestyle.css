@@ -1,0 +1,47 @@
+/*root variables*/
+:root {
+    --mainTill: #ABE7D8;
+    --blueNavy: #014458;
+    --mediumRed: #F35642;
+    --orangePeel:#FDB235;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../images/christine-roy-ir5MHI6rPg0-unsplash.jpg);
+    /* background-image: url(https://source.unsplash.com/1600x900/?travel); */
+    background-size: cover;
+}
+
+#search-text {
+    width:50%;
+    font-size: 2rem;
+    text-align: center;
+    border-radius: 15px;
+}
+#search-submit {
+    font-size: 2rem;
+    background-color: var(--mainTill);
+    color: var(--blueNavy);
+    font-weight: bold;
+    border-radius: 15px;
+}
+h3 {
+    background-color: var(--mainTill);
+    width: 27%;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+.search-buttons {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--blueNavy);
+    margin-top:30px;
+
+
+}
+
