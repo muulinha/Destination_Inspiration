@@ -62,22 +62,36 @@ var tempForm = document.getElementById("tempDefault");
         var temperature = document.querySelector("#temperature");
         var weatherDescription = document.querySelector("#weather-description");
         var APIKeyWeather = "794142a626ce62e5a3897b2a34ca54fe";
+
+        var weatherDeg = ""
+        var tempType = ""
+
+        var userCityWeather = (localStorage.getItem("selectedCity") + "," + localStorage.getItem("selectedState") + "," + localStorage.getItem("destCountryName"))
+
+        if (localStorage.getItem("temp") === "celsius") {
+          weatherDeg = "°C"
+          tempType = "metric"
+        } else {
+          weatherDeg = "°F"
+          tempType = "imperial"
+        }
         
         
         function fetchWeather() {
-          fetch("http://api.openweathermap.org/data/2.5/weather?q=" + "porto" + "&limit=99&units=metric&appid=" + this.APIKeyWeather)
+          fetch("http://api.openweathermap.org/data/2.5/weather?q=" + userCityWeather + "&limit=99&units=" + tempType + "&appid=" + this.APIKeyWeather)
         //   http://api.openweathermap.org/data/2.5/weather?q=perth&limit=99&units=metric&appid=794142a626ce62e5a3897b2a34ca54fe
         
           .then((response) => response.json())
           .then((data) => this.displayWeather(data));
+          
         }
         
         function displayWeather (data) {
           const {icon,description} = data.weather[0];
           const {temp} = data.main;
-
+        
           iconPicture.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
-          temperature.textContent = Math.round(temp) + " °C";
+          temperature.textContent = (Math.round(temp) + weatherDeg);
           weatherDescription.textContent = description
         };
         
@@ -115,8 +129,6 @@ var tempForm = document.getElementById("tempDefault");
             localStorage.setItem('selectedCity', 'Perth,AU')
             }
     
-            console.log(storedTemp);
-    
             if (storedTemp === 'celsius') {
             radiobtnC.checked = true;
             //radiobtnF.checked = false;
@@ -124,10 +136,6 @@ var tempForm = document.getElementById("tempDefault");
             //radiobtnC.checked = false;
             radiobtnF.checked = true;
             }   
-    
-      
-            console.log(storedTemp);
-            console.log(storedCurrency);
 
             fetchCurrency();
             youTubeAPI();
@@ -212,7 +220,7 @@ var tempForm = document.getElementById("tempDefault");
         fetch(`https://countries-cities.p.rapidapi.com/location/country/${destCountry}`, options)
         .then(response => response.json())
         .then(response => { 
-          console.log(response.currency.code)
+          //console.log(response.currency.code)
           localStorage.setItem('destCurrency', response.currency.code);
         
         });
@@ -227,7 +235,7 @@ var tempForm = document.getElementById("tempDefault");
         fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/enriched/${baseCurr}/${destCurr}`)
         .then((res) => res.json())
         .then((data) => {
-        console.log(data);
+        //console.log(data);
         const currentRate = data.conversion_rate;
         const lastUpdate = data.time_last_update_utc;
         const currNameFull = data.target_data.currency_name;
@@ -275,18 +283,18 @@ var tempForm = document.getElementById("tempDefault");
           }
             
           var prevMonthDate = dayjs(`${newMonth}-${newDay}-${newYear}`, "MM-DD-YYYY")
-          console.log(prevMonthDate);
+          //console.log(prevMonthDate);
         
         // fetch previous months exchange rate
         fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/history/${baseCurr}/${newYear}/${newMonth}/${newDay}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          //console.log(data);
           
           //get destination currency
           var histRate = data.conversion_rates[destCurr];
-          console.log(histRate);
-          console.log(typeof(histRate));
+          //console.log(histRate);
+          //console.log(typeof(histRate));
           
           // historic rate - html text  
           lastCurr = ("Last Month Rate: " + baseCurr + " 1 = " + destCurr + " " + (histRate).toFixed(4));

@@ -132,9 +132,14 @@ function printResults(resultObj) {
 
 
       // store city state and country in local storage
-      localStorage.setItem('selectedCity', city)   // Lucus to store city name here!!
-      localStorage.setItem('selectedState', state)   // Lucus to store state name here!!
-      localStorage.setItem('selectedCountry',country)   // Lucus to store country code here!!
+
+      // localStorage.setItem('selectedCity', city)   // Lucus to store city name here!!
+      // localStorage.setItem('selectedState', state)   // Lucus to store state name here!!
+      // localStorage.setItem('selectedCountry',country)   // Lucus to store country code here!!
+
+      localStorage.setItem('selectedCity', "Brisbane")   // Lucus to store city name here!!
+      localStorage.setItem('selectedState', "Queensland")   // Lucus to store state name here!!
+      localStorage.setItem('selectedCountry', "AU")   // Lucus to store country code here!!
 
       fetchCountry();
 

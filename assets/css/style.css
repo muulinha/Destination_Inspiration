@@ -71,3 +71,8 @@ body {
   height: 20px;
   width: 30px;
 }
+
+button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
