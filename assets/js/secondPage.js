@@ -13,11 +13,28 @@ var state;
 var userLastSearch = localStorage.getItem("lastSearch");
 searchInputVal.setAttribute('value', userLastSearch);
 
-searchSubmitEl.addEventListener('click', searchApi);
+searchSubmitEl.addEventListener('click', function (event){
+  searchApi();
+  const userSearch = searchInputVal.value
+  localStorage.setItem('lastSearch', userSearch);
+  if(localStorage.getItem('searchHistory') == null) {
+    localStorage.setItem('searchHistory', '[]')
+  }
+
+  var old_data = JSON.parse(localStorage.getItem('searchHistory'));
+  if(old_data.includes(userSearch)) {
+    return;
+  }
+
+  old_data.push(userSearch);
+  localStorage.setItem('searchHistory', JSON.stringify(old_data));
+  
+});
+
 
 // _________________________________________________________________________________
 function printResults(resultObj) {
-    console.log(resultObj);
+    // console.log(resultObj);
     // set up `<div>` to hold result content
     var resultCard = document.createElement('div');
     var resultBody = document.createElement('a');
@@ -33,9 +50,9 @@ function printResults(resultObj) {
     country = resultObj.country;
     city = resultObj.name;
     state = resultObj.state;
-    console.log(country);
-    console.log(city);
-    console.log(state);
+    // console.log(country);
+    // console.log(city);
+    // console.log(state);
     resultBody.append(titleEl, imgCountry);
     resultContentEl.append(resultCard);
   }
@@ -51,7 +68,7 @@ function printResults(resultObj) {
       })
       .then(function (data) {
         // write query to page so user knows what they are viewing
-        console.log(data);
+        // console.log(data);
         if (!data.length) {
           console.log('No results found!');
           resultContentEl.innerHTML = '<h3>No results found, search again!</h3>';
@@ -123,7 +140,7 @@ function printResults(resultObj) {
     .then(response => {
       localStorage.setItem('destCountryName', response.countries[destCountry]);
 
-      console.log(destCountry)
+      // console.log(destCountry)
     });
 
     // END COUNTRY NAME
