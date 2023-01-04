@@ -117,7 +117,8 @@ var tempForm = document.getElementById("tempDefault");
     
       // get base to destination conversion
       var baseCurr = localStorage.getItem('currency');
-      var destCurr = 'THB';              //NEED DEST CURRENCY FROM WEATHER > COUNTRIES API             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      var destCountry = localStorage.getItem('selectedCountry')
+      var destCurr = localStorage.getItem('destCurrency');  
       var currentCurr = document.querySelector(".conversionRate");
       var lastCurr = document.querySelector(".lastRate");
       var differenceCurr = document.querySelector(".oneMonthChange");
@@ -126,13 +127,53 @@ var tempForm = document.getElementById("tempDefault");
       var nameCurrShort = document.querySelector(".currencyNameShort");
       var currSymbolID = document.querySelector(".currencySymbol");
       var currFlagUrl = document.querySelector(".currencyName");
-
-      //nameCurr.innerHTML = "Currency Name Here";    // get from weather information
-  
+      var cityStateCountry = document.querySelector(".chosenCity")
+      var userCitySelected = (localStorage.getItem("selectedCity") + ", " + localStorage.getItem("selectedState") + ", " + localStorage.getItem("selectedCountry"))
+      
+      // chosen city
+      cityStateCountry.innerHTML = (" " + userCitySelected);
+        
       // rate now
       fetchCurrency();
-      
+    
       function fetchCurrency() {
+
+        const options = {
+          method: 'GET',
+          headers: {
+            'X-RapidAPI-Key': '576a507ee7msh03a8d40416350bbp1e0201jsnbd061cc4d364',
+            'X-RapidAPI-Host': 'countries-cities.p.rapidapi.com'
+          }
+        };
+      
+        fetch(`https://countries-cities.p.rapidapi.com/location/country/${destCountry}`, options)
+        .then(response => response.json())
+        .then(response => { 
+          console.log(response.currency.code)
+          localStorage.setItem('destCurrency', response.currency.code);
+        
+        });
+          //https://countries-cities.p.rapidapi.com/location/country/${destCountry}/576a507ee7msh03a8d40416350bbp1e0201jsnbd061cc4d364
+      
+      
+        //COUNTRIES LIST
+  
+
+          fetch('https://countries-cities.p.rapidapi.com/location/country/list', options)
+            .then(response => response.json())
+            .then(response => {
+              localStorage.setItem('destCountryName', response.countries[destCountry]);
+      });
+      
+            // get list of names in dropdown
+    
+    
+       // END COUNTRIES LIST
+
+
+
+
+        
         fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/enriched/${baseCurr}/${destCurr}`)
         .then((res) => res.json())
         .then((data) => {
@@ -147,25 +188,25 @@ var tempForm = document.getElementById("tempDefault");
           // country & currency information
           nameCurr.innerHTML = (currNameFull) ;
           document.querySelector(".currencyFlag").src = currFlag;
-          nameCurrShort.innerHTML = ("(" + currNameShort + ")");
+          //nameCurrShort.innerHTML = ("(" + currNameShort + ")");
           
-          //nameCurrShort.innerHTML = ("(" + currNameShort + " &#x" + currSymbol + ")") ;
+          nameCurrShort.innerHTML = ("(" + currNameShort + " &#x" + currSymbol + ")") ;
           //nameCurrShort.innerHTML = ("(" + currNameShort +  + ")");
           var splitCurrSymbol = currSymbol.split(",");
           console.log(splitCurrSymbol);
 
-          for (var i = 0; i < splitCurrSymbol.length; i++) { 
-            //currText += ("&#x" + splitCurrSymbol[i] + ";");
-            var nameCurrShort12 = ("&#x" + splitCurrSymbol[i] + ";");
-            console.log(nameCurrShort12);
-            }
+          // for (var i = 0; i < splitCurrSymbol.length; i++) { 
+          //   //currText += ("&#x" + splitCurrSymbol[i] + ";");
+          //   var nameCurrShort12 = ("&#x" + splitCurrSymbol[i] + ";");
+          //   console.log(nameCurrShort12);
+          //   }
 
       
 
 
           // rate now - html text
-          currentCurr.innerHTML = ("Current Exchange Rate: " +baseCurr + " 1 = " + destCurr + " " + (currentRate).toFixed(4));
-          currentCurr = ("Current Exchange Rate: " +baseCurr + " 1 = " + destCurr + " " + (currentRate).toFixed(4));
+          currentCurr.innerHTML = ("Current Exchange Rate: " + baseCurr + " 1 = " + destCurr + " " + (currentRate).toFixed(4));
+          currentCurr = ("Current Exchange Rate: " + baseCurr + " 1 = " + destCurr + " " + (currentRate).toFixed(4));
           
 
         // set previous month date
@@ -227,9 +268,10 @@ var tempForm = document.getElementById("tempDefault");
     // END CONVERT CURRENCY CODE TO VALUES .................................................. 
 
     // YOUTUBE VIDEO 
+    var videoTitle = document.getElementById("video-title");
     var videoSearch = document.getElementById("video-search");
     var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
-
+    //var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
     
 
     function youTubeAPI(){
@@ -238,7 +280,7 @@ var tempForm = document.getElementById("tempDefault");
       youTubeKey +
       "&type=video&part=snippet&maxResults=1" +
       "&q=" +
-      "10 best things to do" + "rome" //hardcode until we get the user destination
+      "10 best things to do" + userCitySelected //hardcode until we get the user destination
       
       //searchInput.value; user destination
       console.log(request)
@@ -253,6 +295,7 @@ var tempForm = document.getElementById("tempDefault");
           console.log(data);
               
           //show youTube video in html:
+          videoTitle.innerHTML += data.items[0].snippet.title
           videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
           })
      
