@@ -138,7 +138,7 @@ var tempForm = document.getElementById("tempDefault");
             }   
 
             fetchCurrency();
-            youTubeAPI();
+            // youTubeAPI(); paused the call temporarily to avoid running out of daily quotes
             
 
             };
