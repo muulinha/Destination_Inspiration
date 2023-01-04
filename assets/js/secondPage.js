@@ -19,11 +19,11 @@ function printResults(resultObj) {
     var resultCard = document.createElement('div');
     var resultBody = document.createElement('a');
     resultBody.classList.add('btn', 'btn-light', 'inline');
-    resultBody.setAttribute('href', "../thirdPage.html")
+    resultBody.setAttribute('href', "./thirdPage.html")
     // needs to direct it to the results page with the country/city input
     resultCard.append(resultBody);
     var titleEl = document.createElement('h3');
-    titleEl.textContent = resultObj.name + ", " +  " " + resultObj.country;
+    titleEl.textContent = resultObj.name + ", " + resultObj.state + ", " + resultObj.country;
     var imgCountry = document.createElement('img');
     imgCountry.src = flag;
     // add country flag
@@ -90,3 +90,14 @@ function printResults(resultObj) {
     });
   };
   // End _________________________________________________________
+
+
+
+
+
+
+
+      // store city state and country in local storage
+      localStorage.setItem('selectedCity', "Miami")   // Lucus to store city name here!!
+      localStorage.setItem('selectedState', "Florida")   // Lucus to store state name here!!
+      localStorage.setItem('selectedCountry', "US")   // Lucus to store country code here!!

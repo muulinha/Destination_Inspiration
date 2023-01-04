@@ -17,11 +17,14 @@
 </head>
 <body>
   
-   
+  <a href="./firstPage.html" class="btn btn-primary" role="button" aria-pressed="true">Home</a>
+  
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-    Open Settings
+    Settings
   </button>
   
+  <div>&nbsp;</div>
+
   <div class="modal fade" id="myModal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -57,6 +60,8 @@
     <h3>Results are shown for:<span class ="chosenCity"></span></h3>
   </div>
 
+  <div>&nbsp;</div>
+
   <section class="card">                                   <!-- THIS IS THE WEATHER CARD-->
     <div><h3>Weather Information Here</h3></div>
     <div class="city-name"></div>
@@ -66,7 +71,7 @@
 <div>&nbsp;</div>
 
 <section class="card" id="myTooltip" data-toggle="tooltip" data-placement="right" title="Tooltip on right">                                   <!-- THIS IS THE CURRENCY CARD-->
-    <div><h3 class="currencyName"></h3><h4 class="currencyNameShort"></h4></div>
+    <div><h3 class="currencyName"></h3><h5 class="currencyNameShort"></h5></div>
     <img class="currencyFlag" src="">
     <div class="conversionRate"></div>
     <div class="oneMonthChange"></div><img id="currIndicator" src=""> 
@@ -75,9 +80,11 @@
 <div>&nbsp;</div>
 
 <section class="card">
-  <div><h3>YouTube Videos Here</h3></div>
-  <div id="video-search">Title?</div>
-  <div>Video 2</div>
+  
+  <div><h3>YouTube Inspiration</h3></div>
+  <h5 id="video-title"></h5>
+  <div id="video-search"></div>
+  
 </section>
 
  
@@ -85,8 +92,6 @@
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="./assets/js/firstPage.js"></script>
-    <script src="./assets/js/secondPage.js"></script>
     <script src="./assets/js/thirdPage.js"></script>
     
 </body>
