@@ -48,6 +48,51 @@ var tempForm = document.getElementById("tempDefault");
 
         // HISTORY
 
+        // 
+        // 
+        // 
+        
+        var country;
+        var currency;
+        var flag;
+     
+
+// Weather INFORMATION ________________
+        var iconPicture = document.querySelector(".icon"); 
+        var temperature = document.querySelector("#temperature");
+        var weatherDescription = document.querySelector("#weather-description");
+        var APIKeyWeather = "794142a626ce62e5a3897b2a34ca54fe";
+        
+        
+        function fetchWeather() {
+          fetch("http://api.openweathermap.org/data/2.5/weather?q=" + "porto" + "&limit=99&units=metric&appid=" + this.APIKeyWeather)
+        //   http://api.openweathermap.org/data/2.5/weather?q=perth&limit=99&units=metric&appid=794142a626ce62e5a3897b2a34ca54fe
+        
+          .then((response) => response.json())
+          .then((data) => this.displayWeather(data));
+        }
+        
+        function displayWeather (data) {
+          const {icon,description} = data.weather[0];
+          const {temp} = data.main;
+
+          iconPicture.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
+          temperature.textContent = Math.round(temp) + " °C";
+          weatherDescription.textContent = description
+        };
+        
+        function flag() {
+            id7.src = "https://www.worldometers.info/img/flags/as-flag.gif";
+        }
+
+        fetchWeather();
+// Weather INFORMATION ________________
+
+
+
+
+
+
         // get stored information
         function init() {
                     
@@ -133,7 +178,9 @@ var tempForm = document.getElementById("tempDefault");
       var currFlagUrl = document.querySelector(".currencyName");
       var cityStateCountry = document.querySelector(".chosenCity")
       var userCitySelected = (localStorage.getItem("selectedCity") + ", " + localStorage.getItem("selectedState") + ", " + localStorage.getItem("destCountryName"))
-      
+
+
+
       // chosen city
       cityStateCountry.innerHTML = (" " + userCitySelected);
         
