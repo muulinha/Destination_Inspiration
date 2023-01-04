@@ -94,10 +94,38 @@ function printResults(resultObj) {
 
 
 
+  function fetchCountry() {
+
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '576a507ee7msh03a8d40416350bbp1e0201jsnbd061cc4d364',
+        'X-RapidAPI-Host': 'countries-cities.p.rapidapi.com'
+      }
+    };
+  
+    //COUNTRY NAME
+    
+    var destCountry = localStorage.getItem('selectedCountry')
+
+    fetch('https://countries-cities.p.rapidapi.com/location/country/list', options)
+    .then(response => response.json())
+    .then(response => {
+      localStorage.setItem('destCountryName', response.countries[destCountry]);
+    });
+
+    // END COUNTRY NAME
+
+  };
+
+
+
 
 
 
       // store city state and country in local storage
-      localStorage.setItem('selectedCity', "Miami")   // Lucus to store city name here!!
-      localStorage.setItem('selectedState', "Florida")   // Lucus to store state name here!!
-      localStorage.setItem('selectedCountry', "US")   // Lucus to store country code here!!
+      localStorage.setItem('selectedCity', "Brisbane")   // Lucus to store city name here!!
+      localStorage.setItem('selectedState', "QLD")   // Lucus to store state name here!!
+      localStorage.setItem('selectedCountry', "AU")   // Lucus to store country code here!!
+
+      fetchCountry();

@@ -83,9 +83,13 @@ var tempForm = document.getElementById("tempDefault");
       
             console.log(storedTemp);
             console.log(storedCurrency);
-    
+
+            fetchCurrency();
+            youTubeAPI();
+            
+
             };
-    
+           
           
             // delete search history data only
     
@@ -98,7 +102,7 @@ var tempForm = document.getElementById("tempDefault");
     
         // END HISTORY ..................................................
     
-        init();
+        
 
         // Display defalut values on the page for a user
         // var savedTemp = localStorage.getItem('temp');
@@ -128,13 +132,13 @@ var tempForm = document.getElementById("tempDefault");
       var currSymbolID = document.querySelector(".currencySymbol");
       var currFlagUrl = document.querySelector(".currencyName");
       var cityStateCountry = document.querySelector(".chosenCity")
-      var userCitySelected = (localStorage.getItem("selectedCity") + ", " + localStorage.getItem("selectedState") + ", " + localStorage.getItem("selectedCountry"))
+      var userCitySelected = (localStorage.getItem("selectedCity") + ", " + localStorage.getItem("selectedState") + ", " + localStorage.getItem("destCountryName"))
       
       // chosen city
       cityStateCountry.innerHTML = (" " + userCitySelected);
         
       // rate now
-      fetchCurrency();
+      
     
       function fetchCurrency() {
 
@@ -146,6 +150,18 @@ var tempForm = document.getElementById("tempDefault");
           }
         };
       
+        // //COUNTRY NAME
+          
+        // fetch('https://countries-cities.p.rapidapi.com/location/country/list', options)
+        // .then(response => response.json())
+        // .then(response => {
+        //   localStorage.setItem('destCountryName', response.countries[destCountry]);
+        // });
+
+        // // END COUNTRY NAME
+
+
+
         fetch(`https://countries-cities.p.rapidapi.com/location/country/${destCountry}`, options)
         .then(response => response.json())
         .then(response => { 
@@ -156,20 +172,7 @@ var tempForm = document.getElementById("tempDefault");
           //https://countries-cities.p.rapidapi.com/location/country/${destCountry}/576a507ee7msh03a8d40416350bbp1e0201jsnbd061cc4d364
       
       
-        //COUNTRIES LIST
-  
-
-          fetch('https://countries-cities.p.rapidapi.com/location/country/list', options)
-            .then(response => response.json())
-            .then(response => {
-              localStorage.setItem('destCountryName', response.countries[destCountry]);
-      });
-      
-            // get list of names in dropdown
-    
-    
-       // END COUNTRIES LIST
-
+        
 
 
 
@@ -301,5 +304,8 @@ var tempForm = document.getElementById("tempDefault");
      
       }
 
-      youTubeAPI();
+      
     // END YOUTUBE VIDEO 
+
+
+    init();
