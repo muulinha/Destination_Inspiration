@@ -1,7 +1,7 @@
 /* root variable */
 :root {
     --backgroud-main: black;
-    --background-secondary:grey;
+    --background-secondary:rgba(174, 174, 174, 0.507);
     --text-main:white;
 }
 
@@ -14,4 +14,35 @@ body {
     background-image: url(https://source.unsplash.com/1600x900/?travel);
     background-size: cover;
     background-position: center;
+}
+
+#home {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    margin-top: 30px;
+}
+
+#center {
+    background-color: var(--backgroud-main);
+    opacity: 0.8;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px 100px;
+}
+
+h3 {
+    font-size: 2rem;
+    color: var(--text-main);
+ }
+
+#three-cards {
+    display: flexbox;
+
+
+
+}
+.cards-last-page {
+    color: var(--text-main);
+    background-color: var(--background-secondary);
 }
