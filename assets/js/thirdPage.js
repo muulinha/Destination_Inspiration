@@ -53,14 +53,12 @@ var tempForm = document.getElementById("tempDefault");
         });     
 
         // HISTORY
-
-        // 
-        // 
-        // 
         
         var country;
         var currency;
         var flag;
+        var lat = localStorage.getItem("selectedLat");
+        var lon = localStorage.getItem("selectedLon");
      
 
 // Weather INFORMATION ________________
@@ -69,10 +67,8 @@ var tempForm = document.getElementById("tempDefault");
         var weatherDescription = document.querySelector("#weather-description");
         var APIKeyWeather = "794142a626ce62e5a3897b2a34ca54fe";
 
-        var weatherDeg = ""
-        var tempType = ""
-
-        var userCityWeather = (localStorage.getItem("selectedCity") + "," + localStorage.getItem("selectedState") + "," + localStorage.getItem("destCountryName"))
+        var weatherDeg = "";
+        var tempType = "";
 
         if (localStorage.getItem("temp") === "celsius") {
           weatherDeg = "°C"
@@ -84,28 +80,34 @@ var tempForm = document.getElementById("tempDefault");
         
         
         function fetchWeather() {
-          fetch("http://api.openweathermap.org/data/2.5/weather?q=" + userCityWeather + "&limit=99&units=" + tempType + "&appid=" + this.APIKeyWeather)
-        //   http://api.openweathermap.org/data/2.5/weather?q=perth&limit=99&units=metric&appid=794142a626ce62e5a3897b2a34ca54fe
         
+          fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&units=" + tempType + "&lon=" + lon + "&appid=" + this.APIKeyWeather)
+
           .then((response) => response.json())
           .then((data) => this.displayWeather(data));
+
+          
           
         }
         
         function displayWeather (data) {
           const {icon,description} = data.weather[0];
           const {temp} = data.main;
+          const {lon,lat} = data.coord;
         
           iconPicture.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
           temperature.textContent = (Math.round(temp) + weatherDeg);
           weatherDescription.textContent = description
+
+
+          console.log(temp,icon,description,lon,lat);
         };
         
         function flag() {
             id7.src = "https://www.worldometers.info/img/flags/as-flag.gif";
         }
 
-        fetchWeather();
+
 // Weather INFORMATION ________________
 
 
@@ -143,9 +145,11 @@ var tempForm = document.getElementById("tempDefault");
             radiobtnF.checked = true;
             }   
 
-            fetchCurrency();
-            // youTubeAPI();
+            // youTubeAPI(); paused the call temporarily to avoid running out of daily quotes
             
+            fetchWeather();
+            fetchCurrency();
+            youTubeAPI()
 
             };
            
@@ -161,7 +165,7 @@ var tempForm = document.getElementById("tempDefault");
     
         // END HISTORY ..................................................
     
-      
+              
 
             // CONVERT CURRENCY CODE TO VALUES
 
@@ -180,8 +184,13 @@ var tempForm = document.getElementById("tempDefault");
       var nameCurrShort = document.querySelector(".currencyNameShort");
       var currSymbolID = document.querySelector(".currencySymbol");
       var currFlagUrl = document.querySelector(".currencyName");
-      var cityStateCountry = document.querySelector(".chosenCity")
-      var userCitySelected = (localStorage.getItem("selectedCity") + ", " + localStorage.getItem("selectedState") + ", " + localStorage.getItem("destCountryName"))
+      var cityStateCountry = document.querySelector(".chosenCity");
+
+      var city = localStorage.getItem("selectedCity")
+      var state = localStorage.getItem("selectedState");
+      var country = localStorage.getItem("selectedCountry")
+
+      var userCitySelected = city + "," + state + "," + country;
 
 
 
@@ -208,7 +217,6 @@ var tempForm = document.getElementById("tempDefault");
         // .then(response => {
         //   localStorage.setItem('destCountryName', response.countries[destCountry]);
         // });
-
         // // END COUNTRY NAME
 
 
@@ -237,26 +245,40 @@ var tempForm = document.getElementById("tempDefault");
         const currNameFull = data.target_data.currency_name;
         const currNameShort = data.target_data.currency_name_short;
         const currSymbol = data.target_data.display_symbol;
+        const currSymbolLenght = data.target_data.display_symbol.length
         const currFlag = data.target_data.flag_url;      
 
           // country & currency information
           nameCurr.innerHTML = (currNameFull) ;
           document.querySelector(".currencyFlag").src = currFlag;
-          //nameCurrShort.innerHTML = ("(" + currNameShort + ")");
-          
-          nameCurrShort.innerHTML = ("(" + currNameShort + " &#x" + currSymbol + ")") ;
-          //nameCurrShort.innerHTML = ("(" + currNameShort +  + ")");
+                    
           var splitCurrSymbol = currSymbol.split(",");
           // console.log(splitCurrSymbol);
 
-          // for (var i = 0; i < splitCurrSymbol.length; i++) { 
-          //   //currText += ("&#x" + splitCurrSymbol[i] + ";");
-          //   var nameCurrShort12 = ("&#x" + splitCurrSymbol[i] + ";");
-          //   console.log(nameCurrShort12);
-          //   }
 
-      
+          if (currSymbolLenght === 0) {
+            nameCurrShort.innerHTML = ("(" + currNameShort + ")") ;
+          } else if (currSymbolLenght === 4) {
+            nameCurrShort.innerHTML = ("(" + currNameShort + " - &#x" + data.target_data.display_symbol + ")") ;
+          } else if (currSymbolLenght === 9) {
 
+           for (var i = 0; i < splitCurrSymbol.length; i++) { 
+           var currText1 = ("&#x" + splitCurrSymbol[0] + ";");
+           var currText2 = ("&#x" + splitCurrSymbol[1] + ";");
+           var str = currText1.concat(currText2);
+           console.log(str)  
+             }
+          nameCurrShort.innerHTML = ("(" + currNameShort + " - " + str + ")") ;
+        } else {
+          for (var i = 0; i < splitCurrSymbol.length; i++) { 
+            var currText1 = ("&#x" + splitCurrSymbol[0] + ";");
+            var currText2 = ("&#x" + splitCurrSymbol[1] + ";");
+            var currText3 = ("&#x" + splitCurrSymbol[2] + ";");
+            var str = currText1.concat(currText2,currText3);
+            console.log(str)  
+              }
+           nameCurrShort.innerHTML = ("(" + currNameShort + " - " + str + ")") ;
+        }
 
           // rate now - html text
           currentCurr.innerHTML = ("Current Exchange Rate: " + baseCurr + " 1 = " + destCurr + " " + (currentRate).toFixed(4));
@@ -279,18 +301,15 @@ var tempForm = document.getElementById("tempDefault");
           }
             
           var prevMonthDate = dayjs(`${newMonth}-${newDay}-${newYear}`, "MM-DD-YYYY")
-          //console.log(prevMonthDate);
+
         
         // fetch previous months exchange rate
         fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/history/${baseCurr}/${newYear}/${newMonth}/${newDay}`)
         .then((res) => res.json())
         .then((data) => {
-          //console.log(data);
           
           //get destination currency
           var histRate = data.conversion_rates[destCurr];
-          //console.log(histRate);
-          //console.log(typeof(histRate));
           
           // historic rate - html text  
           lastCurr = ("Last Month Rate: " + baseCurr + " 1 = " + destCurr + " " + (histRate).toFixed(4));
@@ -322,22 +341,21 @@ var tempForm = document.getElementById("tempDefault");
     // END CONVERT CURRENCY CODE TO VALUES .................................................. 
 
     // YOUTUBE VIDEO 
-    // var videoTitle = document.getElementById("video-title");
-    // var videoSearch = document.getElementById("video-search");
+    var videoTitle = document.getElementById("video-title");
+    var videoSearch = document.getElementById("video-search");
     // var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
-    // //var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
+    // var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
     
 
-    // function youTubeAPI(){
-    //   var request=
-    //   "https://youtube.googleapis.com/youtube/v3/search?key=" +
-    //   youTubeKey +
-    //   "&type=video&part=snippet&maxResults=1" +
-    //   "&q=" +
-    //   "10 best things to do" + userCitySelected //hardcode until we get the user destination
+    function youTubeAPI(){
+      var request=
+      "https://youtube.googleapis.com/youtube/v3/search?key=" +
+      youTubeKey +
+      "&type=video&part=snippet&maxResults=1" +
+      "&q=" +
+      "10 best things to do" + userCitySelected
       
-    //   //searchInput.value; user destination
-    //   console.log(request)
+      console.log(request)
   
     //   fetch(request)   
     //   .then(function(respose) {
@@ -348,12 +366,12 @@ var tempForm = document.getElementById("tempDefault");
     //       let video =data.items[0].id.videoId;
     //       console.log(data);
               
-    //       //show youTube video in html:
-    //       videoTitle.innerHTML += data.items[0].snippet.title
-    //       videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
-    //       })
-     
-    //   }
+          //show youTube video in html:
+          videoTitle.innerHTML += data.items[0].snippet.title
+          videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
+    }
+          // )
+    //  };
 
       
     // END YOUTUBE VIDEO 
@@ -362,4 +380,4 @@ var tempForm = document.getElementById("tempDefault");
 
 
     init();
-
+  

@@ -15,6 +15,7 @@ body {
     background-image: url(../images/christine-roy-ir5MHI6rPg0-unsplash.jpg);
     /* background-image: url(https://source.unsplash.com/1600x900/?travel); */
     background-size: cover;
+    background-position: center;
 }
 
 #search-text {

@@ -36,8 +36,11 @@ searchSubmitEl.addEventListener('click', function (event){
 function printResults(resultObj) {
     // console.log(resultObj);
     // set up `<div>` to hold result content
+    
     var resultCard = document.createElement('div');
     var resultBody = document.createElement('a');
+
+
     resultBody.classList.add('btn', 'btn-light', 'inline');
     resultBody.setAttribute('href', "./thirdPage.html")
     // needs to direct it to the results page with the country/city input
@@ -47,15 +50,42 @@ function printResults(resultObj) {
     var imgCountry = document.createElement('img');
     // imgCountry.src = flag;
     // add country flag
-    country = resultObj.country;
-    city = resultObj.name;
-    state = resultObj.state;
+
+
+    resultBody.append(titleEl, imgCountry);
+    resultContentEl.append(resultCard);
+
+
+
+// ________________________________________________________________________________
+    resultBody.addEventListener("click", function(event) {
+      var element = event.target;
+    
+      console.log(element);
+    
+      country = resultObj.country; 
+      city = resultObj.name;
+      state = resultObj.state;
+      lat = resultObj.lat;
+      lon = resultObj.lon;
+
+      localStorage.setItem('selectedCity', city);   // Lucus to store city name here!!
+      localStorage.setItem('selectedState', state) ;  // Lucus to store state name here!!
+      localStorage.setItem('selectedCountry', country);   // Lucus to store country code here!!
+      localStorage.setItem('selectedLat', lat);   // Lucus to store country code here!!
+      localStorage.setItem('selectedLon', lon);   // Lucus to store country code here!!
+    
+      console.log(country,city,state,lat,lon);
+
+    })};
+// ________________________________________________________________________________
+    
+
     // console.log(country);
     // console.log(city);
     // console.log(state);
-    resultBody.append(titleEl, imgCountry);
-    resultContentEl.append(resultCard);
-  }
+ 
+  
   // _________________________________________________________________________________
   function searchApi() {
     var locQueryUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + searchInputVal.value + '&limit=10&appid=' + rapidAPI;
@@ -144,8 +174,9 @@ function printResults(resultObj) {
     });
 
     // END COUNTRY NAME
-
   };
+
+
 
 
       // store city state and country in local storage
@@ -154,10 +185,5 @@ function printResults(resultObj) {
       // localStorage.setItem('selectedState', state)   // Lucus to store state name here!!
       // localStorage.setItem('selectedCountry',country)   // Lucus to store country code here!!
 
-      localStorage.setItem('selectedCity', "Brisbane")   // Lucus to store city name here!!
-      localStorage.setItem('selectedState', "Queensland")   // Lucus to store state name here!!
-      localStorage.setItem('selectedCountry', "AU")   // Lucus to store country code here!!
 
       fetchCountry();
-
-      
