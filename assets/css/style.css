@@ -1,12 +1,4 @@
-       /*root variables*/
-       :root {
-        --mainTill: #ABE7D8;
-        --blueNavy: #014458;
-        --mediumRed: #F35642;
-        --orangePeel:#FDB235;
-
-      }
-      
+   
       /* Tooltip text */
       .card .tooltext {
         visibility: hidden;
