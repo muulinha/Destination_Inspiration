@@ -51,6 +51,8 @@ var tempForm = document.getElementById("tempDefault");
         var country;
         var currency;
         var flag;
+        var lat = localStorage.getItem("selectedLat");
+        var lon = localStorage.getItem("selectedLon");
      
 
 // Weather INFORMATION ________________
@@ -59,10 +61,8 @@ var tempForm = document.getElementById("tempDefault");
         var weatherDescription = document.querySelector("#weather-description");
         var APIKeyWeather = "794142a626ce62e5a3897b2a34ca54fe";
 
-        var weatherDeg = ""
-        var tempType = ""
-
-        var userCityWeather = (localStorage.getItem("selectedCity") + "," + localStorage.getItem("selectedState") + "," + localStorage.getItem("destCountryName"))
+        var weatherDeg = "";
+        var tempType = "";
 
         if (localStorage.getItem("temp") === "celsius") {
           weatherDeg = "°C"
@@ -74,21 +74,27 @@ var tempForm = document.getElementById("tempDefault");
         
         
         function fetchWeather() {
-          fetch("http://api.openweathermap.org/data/2.5/weather?q=" + userCityWeather + "&limit=99&units=" + tempType + "&appid=" + this.APIKeyWeather)
-        //   http://api.openweathermap.org/data/2.5/weather?q=perth&limit=99&units=metric&appid=794142a626ce62e5a3897b2a34ca54fe
         
+          fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&units=" + tempType + "&lon=" + lon + "&appid=" + this.APIKeyWeather)
+
           .then((response) => response.json())
           .then((data) => this.displayWeather(data));
+
+          
           
         }
         
         function displayWeather (data) {
           const {icon,description} = data.weather[0];
           const {temp} = data.main;
+          const {lon,lat} = data.coord;
         
           iconPicture.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
           temperature.textContent = (Math.round(temp) + weatherDeg);
           weatherDescription.textContent = description
+
+
+          console.log(temp,icon,description,lon,lat);
         };
         
         function flag() {
@@ -153,17 +159,7 @@ var tempForm = document.getElementById("tempDefault");
     
         // END HISTORY ..................................................
     
-        
-
-        // Display defalut values on the page for a user
-        // var savedTemp = localStorage.getItem('temp');
-        // console.log(savedTemp)
-        // var savedCurrency = localStorage.getItem('currency');
-        // console.log(savedCurrency)
-        // var defaultValues = document.createElement('p');
-        // defaultValues.appendChild(savedTemp);
-        // defaultValues.appendChild(savedCurrency);
-        // defaultValuesEl.appendChild(defaultValues)
+              
 
             // CONVERT CURRENCY CODE TO VALUES
 
@@ -182,8 +178,13 @@ var tempForm = document.getElementById("tempDefault");
       var nameCurrShort = document.querySelector(".currencyNameShort");
       var currSymbolID = document.querySelector(".currencySymbol");
       var currFlagUrl = document.querySelector(".currencyName");
-      var cityStateCountry = document.querySelector(".chosenCity")
-      var userCitySelected = (localStorage.getItem("selectedCity") + ", " + localStorage.getItem("selectedState") + ", " + localStorage.getItem("destCountryName"))
+      var cityStateCountry = document.querySelector(".chosenCity");
+
+      var city = localStorage.getItem("selectedCity")
+      var state = localStorage.getItem("selectedState");
+      var country = localStorage.getItem("selectedCountry")
+
+      var userCitySelected = city + "," + state + "," + country;
 
 
 
@@ -210,7 +211,6 @@ var tempForm = document.getElementById("tempDefault");
         // .then(response => {
         //   localStorage.setItem('destCountryName', response.countries[destCountry]);
         // });
-
         // // END COUNTRY NAME
 
 
@@ -337,8 +337,8 @@ var tempForm = document.getElementById("tempDefault");
     // YOUTUBE VIDEO 
     var videoTitle = document.getElementById("video-title");
     var videoSearch = document.getElementById("video-search");
-    var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
-    //var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
+    // var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
+    // var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
     
 
     function youTubeAPI(){
@@ -347,9 +347,8 @@ var tempForm = document.getElementById("tempDefault");
       youTubeKey +
       "&type=video&part=snippet&maxResults=1" +
       "&q=" +
-      "10 best things to do" + userCitySelected //hardcode until we get the user destination
+      "10 best things to do" + userCitySelected
       
-      //searchInput.value; user destination
       console.log(request)
   
       fetch(request)   
@@ -365,8 +364,7 @@ var tempForm = document.getElementById("tempDefault");
           videoTitle.innerHTML += data.items[0].snippet.title
           videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
           })
-     
-      }
+     };
 
       
     // END YOUTUBE VIDEO 
