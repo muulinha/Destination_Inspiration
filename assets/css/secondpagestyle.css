@@ -1,17 +1,19 @@
-/*root variables*/
+/* root variable */
 :root {
-    --mainTill: #ABE7D8;
-    --blueNavy: #014458;
-    --mediumRed: #F35642;
-    --orangePeel:#FDB235;
+    --backgroud-main: black;
+    --background-secondary:grey;
+    --text-main:white;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--orangePeel);  
-    background-image: url(../images/element5-digital-uE2T1tCFsn8-unsplash.jpg);
-    background-size:cover;
-    background-position: center;  
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://source.unsplash.com/1600x900/?travel);
+    background-size: cover;
+    background-position: center;
 }
 
 #home {
@@ -21,33 +23,33 @@ body {
     margin-top: 30px;
 }
 
-#search-from-and-results {
-    margin:250px; 
-    background-color: var(--blueNavy);
-    border-radius: 20px;
+#center {
+    background-color: var(--backgroud-main);
+    opacity: 0.8;
+    height: fit-content;
+    width: fit-content;
+}
+
+#search-input {
+    text-align: center;
+}
+
+p {
+    color:var(--text-main);
+}
+
+/* #search-from-and-results {
+   
 }
 
 #search-form {
-    background-color: var(--orangePeel);
-    width: 40%;
-    padding:10px;
-    border-radius: 20px;
     
 }
 
 .destination {
-    width: 30%;
-    font-size:1.5rem;
-    text-align: center; 
-    color: var(--mediumRed);
-    border: solid;
-    border-color: var(--blueNavy);   
-}
+  
+} */
 
-#result-content {
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-}
+/* #result-content {
+    
+} */

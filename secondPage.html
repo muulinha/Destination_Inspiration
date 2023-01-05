@@ -29,18 +29,19 @@
     <a href="./firstPage.html" class="btn btn-primary" role="button" aria-pressed="true"><i class="fas fa-home" aria-hidden="true"></i></a>
   </section>
 
-  <section id="search-from-and-results">
+  <section id="center">
       <center>
             <div>&nbsp;</div>
             <form id="search-form" >
               <input oninput="this.value = this.value.toUpperCase()" id="search-input" class="destination">
-                <button id="search-submit">Search for a City</button>
+                <button id="search-submit"><i class="fas fa-search"></i></button>
               </form>
             <div>&nbsp;</div>
       </center>
 
       <!-- SEARCH RESULTS -->
       <div >
+        <p>Your destination search found several<span class="lenth"></span>results, <br> Please click the one you would like to explore</p>
         <div id="result-content"></div>
       </div>
   </section>
