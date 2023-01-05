@@ -59,6 +59,8 @@ var tempForm = document.getElementById("tempDefault");
         var flag;
         var lat = localStorage.getItem("selectedLat");
         var lon = localStorage.getItem("selectedLon");
+        var lat = localStorage.getItem("selectedLat");
+        var lon = localStorage.getItem("selectedLon");
      
 
 // Weather INFORMATION ________________
@@ -67,6 +69,8 @@ var tempForm = document.getElementById("tempDefault");
         var weatherDescription = document.querySelector("#weather-description");
         var APIKeyWeather = "794142a626ce62e5a3897b2a34ca54fe";
 
+        var weatherDeg = "";
+        var tempType = "";
         var weatherDeg = "";
         var tempType = "";
 
@@ -83,8 +87,14 @@ var tempForm = document.getElementById("tempDefault");
         
           fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&units=" + tempType + "&lon=" + lon + "&appid=" + this.APIKeyWeather)
 
+        
+          fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&units=" + tempType + "&lon=" + lon + "&appid=" + this.APIKeyWeather)
+
           .then((response) => response.json())
           .then((data) => this.displayWeather(data));
+
+          
+          
 
           
           
@@ -94,10 +104,14 @@ var tempForm = document.getElementById("tempDefault");
           const {icon,description} = data.weather[0];
           const {temp} = data.main;
           const {lon,lat} = data.coord;
+          const {lon,lat} = data.coord;
         
           iconPicture.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
           temperature.textContent = (Math.round(temp) + weatherDeg);
           weatherDescription.textContent = description
+
+
+          console.log(temp,icon,description,lon,lat);
 
 
           console.log(temp,icon,description,lon,lat);
@@ -106,6 +120,7 @@ var tempForm = document.getElementById("tempDefault");
         function flag() {
             id7.src = "https://www.worldometers.info/img/flags/as-flag.gif";
         }
+
 
 
 // Weather INFORMATION ________________
@@ -148,7 +163,13 @@ var tempForm = document.getElementById("tempDefault");
             // youTubeAPI(); paused the call temporarily to avoid running out of daily quotes
             
             fetchWeather();
+
+            // youTubeAPI(); paused the call temporarily to avoid running out of daily quotes
+            
+            fetchWeather();
             fetchCurrency();
+            youTubeAPI()
+
             youTubeAPI()
 
             };
@@ -165,6 +186,7 @@ var tempForm = document.getElementById("tempDefault");
     
         // END HISTORY ..................................................
     
+              
               
 
             // CONVERT CURRENCY CODE TO VALUES
@@ -184,6 +206,13 @@ var tempForm = document.getElementById("tempDefault");
       var nameCurrShort = document.querySelector(".currencyNameShort");
       var currSymbolID = document.querySelector(".currencySymbol");
       var currFlagUrl = document.querySelector(".currencyName");
+      var cityStateCountry = document.querySelector(".chosenCity");
+
+      var city = localStorage.getItem("selectedCity")
+      var state = localStorage.getItem("selectedState");
+      var country = localStorage.getItem("selectedCountry")
+
+      var userCitySelected = city + "," + state + "," + country;
       var cityStateCountry = document.querySelector(".chosenCity");
 
       var city = localStorage.getItem("selectedCity")
@@ -246,15 +275,16 @@ var tempForm = document.getElementById("tempDefault");
         const currNameShort = data.target_data.currency_name_short;
         const currSymbol = data.target_data.display_symbol;
         const currSymbolLenght = data.target_data.display_symbol.length
+        const currSymbolLenght = data.target_data.display_symbol.length
         const currFlag = data.target_data.flag_url;      
 
           // country & currency information
           nameCurr.innerHTML = (currNameFull) ;
           document.querySelector(".currencyFlag").src = currFlag;
                     
+                    
           var splitCurrSymbol = currSymbol.split(",");
           // console.log(splitCurrSymbol);
-
 
           if (currSymbolLenght === 0) {
             nameCurrShort.innerHTML = ("(" + currNameShort + ")") ;
@@ -302,6 +332,7 @@ var tempForm = document.getElementById("tempDefault");
             
           var prevMonthDate = dayjs(`${newMonth}-${newDay}-${newYear}`, "MM-DD-YYYY")
 
+
         
         // fetch previous months exchange rate
         fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/history/${baseCurr}/${newYear}/${newMonth}/${newDay}`)
@@ -345,6 +376,8 @@ var tempForm = document.getElementById("tempDefault");
     var videoSearch = document.getElementById("video-search");
     // var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
     // var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
+    // var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
+    // var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
     
 
     function youTubeAPI(){
@@ -353,6 +386,7 @@ var tempForm = document.getElementById("tempDefault");
       youTubeKey +
       "&type=video&part=snippet&maxResults=1" +
       "&q=" +
+      "10 best things to do" + userCitySelected
       "10 best things to do" + userCitySelected
       
       console.log(request)
@@ -369,9 +403,8 @@ var tempForm = document.getElementById("tempDefault");
           //show youTube video in html:
           videoTitle.innerHTML += data.items[0].snippet.title
           videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
-    }
-          // )
-    //  };
+          })
+     };
 
       
     // END YOUTUBE VIDEO 
