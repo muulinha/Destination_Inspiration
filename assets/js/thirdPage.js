@@ -104,7 +104,6 @@ var tempForm = document.getElementById("tempDefault");
           const {icon,description} = data.weather[0];
           const {temp} = data.main;
           const {lon,lat} = data.coord;
-          const {lon,lat} = data.coord;
         
           iconPicture.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
           temperature.textContent = (Math.round(temp) + weatherDeg);
@@ -168,9 +167,8 @@ var tempForm = document.getElementById("tempDefault");
             
             fetchWeather();
             fetchCurrency();
-            youTubeAPI()
+            // youTubeAPI()
 
-            youTubeAPI()
 
             };
            
@@ -274,7 +272,6 @@ var tempForm = document.getElementById("tempDefault");
         const currNameFull = data.target_data.currency_name;
         const currNameShort = data.target_data.currency_name_short;
         const currSymbol = data.target_data.display_symbol;
-        const currSymbolLenght = data.target_data.display_symbol.length
         const currSymbolLenght = data.target_data.display_symbol.length
         const currFlag = data.target_data.flag_url;      
 
@@ -380,16 +377,16 @@ var tempForm = document.getElementById("tempDefault");
     // var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
     
 
-    function youTubeAPI(){
-      var request=
-      "https://youtube.googleapis.com/youtube/v3/search?key=" +
-      youTubeKey +
-      "&type=video&part=snippet&maxResults=1" +
-      "&q=" +
-      "10 best things to do" + userCitySelected
-      "10 best things to do" + userCitySelected
+    // function youTubeAPI(){
+    //   var request=
+    //   "https://youtube.googleapis.com/youtube/v3/search?key=" +
+    //   youTubeKey +
+    //   "&type=video&part=snippet&maxResults=1" +
+    //   "&q=" +
+    //   "10 best things to do" + userCitySelected
+    //   "10 best things to do" + userCitySelected
       
-      console.log(request)
+    //   console.log(request)
   
     //   fetch(request)   
     //   .then(function(respose) {
@@ -401,10 +398,11 @@ var tempForm = document.getElementById("tempDefault");
     //       console.log(data);
               
           //show youTube video in html:
-          videoTitle.innerHTML += data.items[0].snippet.title
-          videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
-          })
-     };
+          // videoTitle.innerHTML += data.items[0].snippet.title
+          // videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
+          // }
+    //       )
+    //  };
 
       
     // END YOUTUBE VIDEO 
