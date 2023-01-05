@@ -1,5 +1,5 @@
 var select = document.getElementById("selectCurrencyDefault");
-var defaultValuesEl = document.querySelector('.defaultValues');
+var showDefaultCurrency = document.querySelector('.showDefaultCurrency');
 
 
 var currencySelection = ["AED", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN", "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB", "BRL", "BSD", "BTN", "BWP", "BYN", "BZD", "CAD", "CDF", "CHF", "CLP", "CNY", "COP", "CRC", "CUP", "CVE", "CZK", "DJF", "DKK", "DOP", "DZD", "EGP", "ERN", "ETB", "EUR", "FJD", "FKP", "FOK", "GBP", "GEL", "GGP", "GHS", "GIP", "GMD", "GNF", "GTQ", "GYD", "HKD", "HNL", "HRK", "HTG", "HUF", "IDR", "ILS", "IMP", "INR", "IQD", "IRR", "ISK", "JEP", "JMD", "JOD", "JPY", "KES", "KGS", "KHR", "KID", "KMF", "KRW", "KWD", "KYD", "KZT", "LAK", "LBP", "LKR", "LRD", "LSL", "LYD", "MAD", "MDL", "MGA", "MKD", "MMK", "MNT", "MOP", "MRU", "MUR", "MVR", "MWK", "MXN", "MYR", "MZN", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD", "OMR", "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON", "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLE", "SOS", "SRD", "SSP", "STN", "SYP", "SZL", "THB", "TJS", "TMT", "TND", "TOP", "TRY", "TTD", "TVD", "TWD", "TZS", "UAH", "UGX", "USD", "UYU", "UZS", "VES", "VND", "VUV", "WST", "XAF", "XCD", "XDR", "XOF", "XPF", "YER", "ZAR", "ZMW", "ZWL"];
@@ -19,11 +19,17 @@ var selector = document.querySelectorAll("#currencyOptions");
 Array.from(selector).forEach((element) => {
     element.addEventListener('click', (event) => {
       localStorage.setItem('currency',`${event.target.innerText}`);
-      var defaultCurrencyEl = document.createElement('h4');
-      
+      var appendCurrency = `${event.target.innerText}`;
+      var showCurrencyEl = document.createElement('p');
+      setTimeout (function () {
+      showCurrencyEl.innerHTML = "You have selected " + appendCurrency + " as your default currency!";
+      showDefaultCurrency.appendChild(showCurrencyEl);
+      }, 100);
+      setTimeout (function () {
+      showDefaultCurrency.removeChild(showCurrencyEl);
+      }, 1400);
     });
   });
-
 
 var tempForm = document.getElementById("tempDefault");
 
@@ -53,6 +59,8 @@ var tempForm = document.getElementById("tempDefault");
         var flag;
         var lat = localStorage.getItem("selectedLat");
         var lon = localStorage.getItem("selectedLon");
+        var lat = localStorage.getItem("selectedLat");
+        var lon = localStorage.getItem("selectedLon");
      
 
 // Weather INFORMATION ________________
@@ -61,6 +69,8 @@ var tempForm = document.getElementById("tempDefault");
         var weatherDescription = document.querySelector("#weather-description");
         var APIKeyWeather = "794142a626ce62e5a3897b2a34ca54fe";
 
+        var weatherDeg = "";
+        var tempType = "";
         var weatherDeg = "";
         var tempType = "";
 
@@ -77,8 +87,14 @@ var tempForm = document.getElementById("tempDefault");
         
           fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&units=" + tempType + "&lon=" + lon + "&appid=" + this.APIKeyWeather)
 
+        
+          fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&units=" + tempType + "&lon=" + lon + "&appid=" + this.APIKeyWeather)
+
           .then((response) => response.json())
           .then((data) => this.displayWeather(data));
+
+          
+          
 
           
           
@@ -95,11 +111,15 @@ var tempForm = document.getElementById("tempDefault");
 
 
           console.log(temp,icon,description,lon,lat);
+
+
+          console.log(temp,icon,description,lon,lat);
         };
         
         function flag() {
             id7.src = "https://www.worldometers.info/img/flags/as-flag.gif";
         }
+
 
 
 // Weather INFORMATION ________________
@@ -138,12 +158,12 @@ var tempForm = document.getElementById("tempDefault");
             //radiobtnC.checked = false;
             radiobtnF.checked = true;
             }   
-
-            // youTubeAPI(); paused the call temporarily to avoid running out of daily quotes
+            
             
             fetchWeather();
             fetchCurrency();
-            youTubeAPI()
+            // youTubeAPI() paused the call temporarily to avoid running out of daily quotes
+
 
             };
            
@@ -159,6 +179,7 @@ var tempForm = document.getElementById("tempDefault");
     
         // END HISTORY ..................................................
     
+              
               
 
             // CONVERT CURRENCY CODE TO VALUES
@@ -178,6 +199,13 @@ var tempForm = document.getElementById("tempDefault");
       var nameCurrShort = document.querySelector(".currencyNameShort");
       var currSymbolID = document.querySelector(".currencySymbol");
       var currFlagUrl = document.querySelector(".currencyName");
+      var cityStateCountry = document.querySelector(".chosenCity");
+
+      var city = localStorage.getItem("selectedCity")
+      var state = localStorage.getItem("selectedState");
+      var country = localStorage.getItem("selectedCountry")
+
+      var userCitySelected = city + "," + state + "," + country;
       var cityStateCountry = document.querySelector(".chosenCity");
 
       var city = localStorage.getItem("selectedCity")
@@ -246,9 +274,9 @@ var tempForm = document.getElementById("tempDefault");
           nameCurr.innerHTML = (currNameFull) ;
           document.querySelector(".currencyFlag").src = currFlag;
                     
+                    
           var splitCurrSymbol = currSymbol.split(",");
-          console.log(splitCurrSymbol);
-
+          // console.log(splitCurrSymbol);
 
           if (currSymbolLenght === 0) {
             nameCurrShort.innerHTML = ("(" + currNameShort + ")") ;
@@ -296,6 +324,7 @@ var tempForm = document.getElementById("tempDefault");
             
           var prevMonthDate = dayjs(`${newMonth}-${newDay}-${newYear}`, "MM-DD-YYYY")
 
+
         
         // fetch previous months exchange rate
         fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/history/${baseCurr}/${newYear}/${newMonth}/${newDay}`)
@@ -339,32 +368,36 @@ var tempForm = document.getElementById("tempDefault");
     var videoSearch = document.getElementById("video-search");
     // var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
     // var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
+    // var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
+    // var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
     
 
-    function youTubeAPI(){
-      var request=
-      "https://youtube.googleapis.com/youtube/v3/search?key=" +
-      youTubeKey +
-      "&type=video&part=snippet&maxResults=1" +
-      "&q=" +
-      "10 best things to do" + userCitySelected
+    // function youTubeAPI(){
+    //   var request=
+    //   "https://youtube.googleapis.com/youtube/v3/search?key=" +
+    //   youTubeKey +
+    //   "&type=video&part=snippet&maxResults=1" +
+    //   "&q=" +
+    //   "10 best things to do" + userCitySelected
+    //   "10 best things to do" + userCitySelected
       
-      console.log(request)
+    //   console.log(request)
   
-      fetch(request)   
-      .then(function(respose) {
-              return respose.json();  
-          })
-      .then(function(data){
+    //   fetch(request)   
+    //   .then(function(respose) {
+    //           return respose.json();  
+    //       })
+    //   .then(function(data){
               
-          let video =data.items[0].id.videoId;
-          console.log(data);
+    //       let video =data.items[0].id.videoId;
+    //       console.log(data);
               
           //show youTube video in html:
-          videoTitle.innerHTML += data.items[0].snippet.title
-          videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
-          })
-     };
+          // videoTitle.innerHTML += data.items[0].snippet.title
+          // videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
+          // }
+    //       )
+    //  };
 
       
     // END YOUTUBE VIDEO 
