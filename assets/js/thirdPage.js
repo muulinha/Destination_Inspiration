@@ -158,16 +158,11 @@ var tempForm = document.getElementById("tempDefault");
             //radiobtnC.checked = false;
             radiobtnF.checked = true;
             }   
-
-            // youTubeAPI(); paused the call temporarily to avoid running out of daily quotes
             
-            fetchWeather();
-
-            // youTubeAPI(); paused the call temporarily to avoid running out of daily quotes
             
             fetchWeather();
             fetchCurrency();
-            // youTubeAPI()
+            // youTubeAPI() paused the call temporarily to avoid running out of daily quotes
 
 
             };
