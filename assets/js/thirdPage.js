@@ -47,10 +47,6 @@ var tempForm = document.getElementById("tempDefault");
         });     
 
         // HISTORY
-
-        // 
-        // 
-        // 
         
         var country;
         var currency;
@@ -99,7 +95,7 @@ var tempForm = document.getElementById("tempDefault");
             id7.src = "https://www.worldometers.info/img/flags/as-flag.gif";
         }
 
-        fetchWeather();
+
 // Weather INFORMATION ________________
 
 
@@ -137,9 +133,11 @@ var tempForm = document.getElementById("tempDefault");
             radiobtnF.checked = true;
             }   
 
-            fetchCurrency();
             // youTubeAPI(); paused the call temporarily to avoid running out of daily quotes
             
+            fetchWeather();
+            fetchCurrency();
+            youTubeAPI()
 
             };
            
@@ -241,26 +239,40 @@ var tempForm = document.getElementById("tempDefault");
         const currNameFull = data.target_data.currency_name;
         const currNameShort = data.target_data.currency_name_short;
         const currSymbol = data.target_data.display_symbol;
+        const currSymbolLenght = data.target_data.display_symbol.length
         const currFlag = data.target_data.flag_url;      
 
           // country & currency information
           nameCurr.innerHTML = (currNameFull) ;
           document.querySelector(".currencyFlag").src = currFlag;
-          //nameCurrShort.innerHTML = ("(" + currNameShort + ")");
-          
-          nameCurrShort.innerHTML = ("(" + currNameShort + " &#x" + currSymbol + ")") ;
-          //nameCurrShort.innerHTML = ("(" + currNameShort +  + ")");
+                    
           var splitCurrSymbol = currSymbol.split(",");
           console.log(splitCurrSymbol);
 
-          // for (var i = 0; i < splitCurrSymbol.length; i++) { 
-          //   //currText += ("&#x" + splitCurrSymbol[i] + ";");
-          //   var nameCurrShort12 = ("&#x" + splitCurrSymbol[i] + ";");
-          //   console.log(nameCurrShort12);
-          //   }
 
-      
+          if (currSymbolLenght === 0) {
+            nameCurrShort.innerHTML = ("(" + currNameShort + ")") ;
+          } else if (currSymbolLenght === 4) {
+            nameCurrShort.innerHTML = ("(" + currNameShort + " - &#x" + data.target_data.display_symbol + ")") ;
+          } else if (currSymbolLenght === 9) {
 
+           for (var i = 0; i < splitCurrSymbol.length; i++) { 
+           var currText1 = ("&#x" + splitCurrSymbol[0] + ";");
+           var currText2 = ("&#x" + splitCurrSymbol[1] + ";");
+           var str = currText1.concat(currText2);
+           console.log(str)  
+             }
+          nameCurrShort.innerHTML = ("(" + currNameShort + " - " + str + ")") ;
+        } else {
+          for (var i = 0; i < splitCurrSymbol.length; i++) { 
+            var currText1 = ("&#x" + splitCurrSymbol[0] + ";");
+            var currText2 = ("&#x" + splitCurrSymbol[1] + ";");
+            var currText3 = ("&#x" + splitCurrSymbol[2] + ";");
+            var str = currText1.concat(currText2,currText3);
+            console.log(str)  
+              }
+           nameCurrShort.innerHTML = ("(" + currNameShort + " - " + str + ")") ;
+        }
 
           // rate now - html text
           currentCurr.innerHTML = ("Current Exchange Rate: " + baseCurr + " 1 = " + destCurr + " " + (currentRate).toFixed(4));
@@ -283,18 +295,15 @@ var tempForm = document.getElementById("tempDefault");
           }
             
           var prevMonthDate = dayjs(`${newMonth}-${newDay}-${newYear}`, "MM-DD-YYYY")
-          //console.log(prevMonthDate);
+
         
         // fetch previous months exchange rate
         fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/history/${baseCurr}/${newYear}/${newMonth}/${newDay}`)
         .then((res) => res.json())
         .then((data) => {
-          //console.log(data);
           
           //get destination currency
           var histRate = data.conversion_rates[destCurr];
-          //console.log(histRate);
-          //console.log(typeof(histRate));
           
           // historic rate - html text  
           lastCurr = ("Last Month Rate: " + baseCurr + " 1 = " + destCurr + " " + (histRate).toFixed(4));
@@ -366,4 +375,4 @@ var tempForm = document.getElementById("tempDefault");
 
 
     init();
-
+  
