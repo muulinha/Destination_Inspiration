@@ -1,5 +1,5 @@
 var select = document.getElementById("selectCurrencyDefault");
-var defaultValuesEl = document.querySelector('.defaultValues');
+var showDefaultCurrency = document.querySelector('.showDefaultCurrency');
 
 
 var currencySelection = ["AED", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN", "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB", "BRL", "BSD", "BTN", "BWP", "BYN", "BZD", "CAD", "CDF", "CHF", "CLP", "CNY", "COP", "CRC", "CUP", "CVE", "CZK", "DJF", "DKK", "DOP", "DZD", "EGP", "ERN", "ETB", "EUR", "FJD", "FKP", "FOK", "GBP", "GEL", "GGP", "GHS", "GIP", "GMD", "GNF", "GTQ", "GYD", "HKD", "HNL", "HRK", "HTG", "HUF", "IDR", "ILS", "IMP", "INR", "IQD", "IRR", "ISK", "JEP", "JMD", "JOD", "JPY", "KES", "KGS", "KHR", "KID", "KMF", "KRW", "KWD", "KYD", "KZT", "LAK", "LBP", "LKR", "LRD", "LSL", "LYD", "MAD", "MDL", "MGA", "MKD", "MMK", "MNT", "MOP", "MRU", "MUR", "MVR", "MWK", "MXN", "MYR", "MZN", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD", "OMR", "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON", "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLE", "SOS", "SRD", "SSP", "STN", "SYP", "SZL", "THB", "TJS", "TMT", "TND", "TOP", "TRY", "TTD", "TVD", "TWD", "TZS", "UAH", "UGX", "USD", "UYU", "UZS", "VES", "VND", "VUV", "WST", "XAF", "XCD", "XDR", "XOF", "XPF", "YER", "ZAR", "ZMW", "ZWL"];
@@ -19,11 +19,17 @@ var selector = document.querySelectorAll("#currencyOptions");
 Array.from(selector).forEach((element) => {
     element.addEventListener('click', (event) => {
       localStorage.setItem('currency',`${event.target.innerText}`);
-      var defaultCurrencyEl = document.createElement('h4');
-      
+      var appendCurrency = `${event.target.innerText}`;
+      var showCurrencyEl = document.createElement('p');
+      setTimeout (function () {
+      showCurrencyEl.innerHTML = "You have selected " + appendCurrency + " as your default currency!";
+      showDefaultCurrency.appendChild(showCurrencyEl);
+      }, 100);
+      setTimeout (function () {
+      showDefaultCurrency.removeChild(showCurrencyEl);
+      }, 1400);
     });
   });
-
 
 var tempForm = document.getElementById("tempDefault");
 
@@ -138,7 +144,7 @@ var tempForm = document.getElementById("tempDefault");
             }   
 
             fetchCurrency();
-            youTubeAPI();
+            // youTubeAPI();
             
 
             };
@@ -155,17 +161,7 @@ var tempForm = document.getElementById("tempDefault");
     
         // END HISTORY ..................................................
     
-        
-
-        // Display defalut values on the page for a user
-        // var savedTemp = localStorage.getItem('temp');
-        // console.log(savedTemp)
-        // var savedCurrency = localStorage.getItem('currency');
-        // console.log(savedCurrency)
-        // var defaultValues = document.createElement('p');
-        // defaultValues.appendChild(savedTemp);
-        // defaultValues.appendChild(savedCurrency);
-        // defaultValuesEl.appendChild(defaultValues)
+      
 
             // CONVERT CURRENCY CODE TO VALUES
 
@@ -251,7 +247,7 @@ var tempForm = document.getElementById("tempDefault");
           nameCurrShort.innerHTML = ("(" + currNameShort + " &#x" + currSymbol + ")") ;
           //nameCurrShort.innerHTML = ("(" + currNameShort +  + ")");
           var splitCurrSymbol = currSymbol.split(",");
-          console.log(splitCurrSymbol);
+          // console.log(splitCurrSymbol);
 
           // for (var i = 0; i < splitCurrSymbol.length; i++) { 
           //   //currText += ("&#x" + splitCurrSymbol[i] + ";");
@@ -326,38 +322,38 @@ var tempForm = document.getElementById("tempDefault");
     // END CONVERT CURRENCY CODE TO VALUES .................................................. 
 
     // YOUTUBE VIDEO 
-    var videoTitle = document.getElementById("video-title");
-    var videoSearch = document.getElementById("video-search");
-    var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
-    //var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
+    // var videoTitle = document.getElementById("video-title");
+    // var videoSearch = document.getElementById("video-search");
+    // var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
+    // //var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
     
 
-    function youTubeAPI(){
-      var request=
-      "https://youtube.googleapis.com/youtube/v3/search?key=" +
-      youTubeKey +
-      "&type=video&part=snippet&maxResults=1" +
-      "&q=" +
-      "10 best things to do" + userCitySelected //hardcode until we get the user destination
+    // function youTubeAPI(){
+    //   var request=
+    //   "https://youtube.googleapis.com/youtube/v3/search?key=" +
+    //   youTubeKey +
+    //   "&type=video&part=snippet&maxResults=1" +
+    //   "&q=" +
+    //   "10 best things to do" + userCitySelected //hardcode until we get the user destination
       
-      //searchInput.value; user destination
-      console.log(request)
+    //   //searchInput.value; user destination
+    //   console.log(request)
   
-      fetch(request)   
-      .then(function(respose) {
-              return respose.json();  
-          })
-      .then(function(data){
+    //   fetch(request)   
+    //   .then(function(respose) {
+    //           return respose.json();  
+    //       })
+    //   .then(function(data){
               
-          let video =data.items[0].id.videoId;
-          console.log(data);
+    //       let video =data.items[0].id.videoId;
+    //       console.log(data);
               
-          //show youTube video in html:
-          videoTitle.innerHTML += data.items[0].snippet.title
-          videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
-          })
+    //       //show youTube video in html:
+    //       videoTitle.innerHTML += data.items[0].snippet.title
+    //       videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
+    //       })
      
-      }
+    //   }
 
       
     // END YOUTUBE VIDEO 
