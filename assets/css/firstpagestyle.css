@@ -29,13 +29,13 @@ h1 {
     color:var(--text-main);
 }
 
-/* #search-text {
+#search-text {
     text-align: center;
 }
 
-#search-submit {
+/* #search-submit {
     
-}*/
+} */
 
 h3 {
    font-size: 1.5rem;
@@ -46,8 +46,14 @@ h3 {
     color: var(--text-main);
     font-size: 1rem;
     padding: 10px 20px;
-    /* display: flex;
-    justify-content: space-between; */
 }
 
+#trash-icon {
+    position: relative;
+    right: -100px;
+    bottom: -32px;
+}
 
+/* @media screen and (max-width: 844px) {
+
+} */
