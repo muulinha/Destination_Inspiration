@@ -38,11 +38,16 @@ h3 {
 
 #three-cards {
     display: flexbox;
-
-
-
 }
+
 .cards-last-page {
     color: var(--text-main);
     background-color: var(--background-secondary);
+}
+
+/* Temporary fixs to test css without calling youTubeApi */
+.mock-up-video {
+    background-image: url(../images/mock-up.avif);
+    height: 315px;
+    width: 420px;
 }
