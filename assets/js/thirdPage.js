@@ -162,7 +162,8 @@ var tempForm = document.getElementById("tempDefault");
             
             fetchWeather();
             fetchCurrency();
-            // youTubeAPI() paused the call temporarily to avoid running out of daily quotes
+            // youTubeAPI() 
+            // paused the call temporarily to avoid running out of daily quotes
 
 
             };
@@ -368,8 +369,7 @@ var tempForm = document.getElementById("tempDefault");
     var videoSearch = document.getElementById("video-search");
     // var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
     // var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
-    // var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
-    // var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
+    
     
 
     // function youTubeAPI(){
@@ -392,10 +392,10 @@ var tempForm = document.getElementById("tempDefault");
     //       let video =data.items[0].id.videoId;
     //       console.log(data);
               
-          //show youTube video in html:
-          // videoTitle.innerHTML += data.items[0].snippet.title
-          // videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
-          // }
+    //       // show youTube video in html:
+    //       videoTitle.innerHTML += data.items[0].snippet.title
+    //       videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
+    //       }
     //       )
     //  };
 
