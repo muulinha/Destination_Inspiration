@@ -372,32 +372,32 @@ var tempForm = document.getElementById("tempDefault");
     
     
 
-    // function youTubeAPI(){
-    //   var request=
-    //   "https://youtube.googleapis.com/youtube/v3/search?key=" +
-    //   youTubeKey +
-    //   "&type=video&part=snippet&maxResults=1" +
-    //   "&q=" +
-    //   "10 best things to do" + userCitySelected
-    //   "10 best things to do" + userCitySelected
+    function youTubeAPI(){
+      var request=
+      "https://youtube.googleapis.com/youtube/v3/search?key=" +
+      youTubeKey +
+      "&type=video&part=snippet&maxResults=1" +
+      "&q=" +
+      "10 best things to do" + userCitySelected
+      "10 best things to do" + userCitySelected
       
-    //   console.log(request)
+      console.log(request)
   
-    //   fetch(request)   
-    //   .then(function(respose) {
-    //           return respose.json();  
-    //       })
-    //   .then(function(data){
+      fetch(request)   
+      .then(function(respose) {
+              return respose.json();  
+          })
+      .then(function(data){
               
-    //       let video =data.items[0].id.videoId;
-    //       console.log(data);
+          let video =data.items[0].id.videoId;
+          console.log(data);
               
-    //       // show youTube video in html:
-    //       videoTitle.innerHTML += data.items[0].snippet.title
-    //       videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
-    //       }
-    //       )
-    //  };
+          // show youTube video in html:
+          videoTitle.innerHTML += data.items[0].snippet.title
+          videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
+          }
+          )
+     };
 
       
     // END YOUTUBE VIDEO 
