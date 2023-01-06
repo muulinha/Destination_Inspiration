@@ -66,6 +66,11 @@ var tempForm = document.getElementById("tempDefault");
 // Weather INFORMATION ________________
         var iconPicture = document.querySelector(".icon"); 
         var temperature = document.querySelector("#temperature");
+        var feelsLike = document.querySelector("#feels-like");
+        var tempMin = document.querySelector("#temp-min");
+        var tempMax = document.querySelector("#temp-max");
+        var humid = document.querySelector("#humidity");
+        var windSpeed = document.querySelector("#wind-speed");
         var weatherDescription = document.querySelector("#weather-description");
         var APIKeyWeather = "794142a626ce62e5a3897b2a34ca54fe";
 
@@ -77,9 +82,11 @@ var tempForm = document.getElementById("tempDefault");
         if (localStorage.getItem("temp") === "celsius") {
           weatherDeg = "°C"
           tempType = "metric"
+          speedType = "m/s"
         } else {
           weatherDeg = "°F"
           tempType = "imperial"
+          speedType = "mph"
         }
         
         
@@ -102,12 +109,20 @@ var tempForm = document.getElementById("tempDefault");
         
         function displayWeather (data) {
           const {icon,description} = data.weather[0];
-          const {temp} = data.main;
+          const {temp,feels_like,temp_min,temp_max,humidity} = data.main;
           const {lon,lat} = data.coord;
+          const {speed} = data.wind;
+          
+          
         
           iconPicture.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
           temperature.textContent = (Math.round(temp) + weatherDeg);
           weatherDescription.textContent = description
+          feelsLike.textContent = "Feels Like: " + (Math.round(feels_like) + weatherDeg);
+          tempMin.textContent = "Temp Min: " +  (Math.round(temp_min) + weatherDeg);
+          tempMax.textContent = "Temp Max: " +  (Math.round(temp_max) + weatherDeg);
+          humid.textContent = "Humidity: " +  humidity + "%";
+          windSpeed.textContent = "Wind Speed: " +  speed + " " + speedType;
 
 
           console.log(temp,icon,description,lon,lat);
