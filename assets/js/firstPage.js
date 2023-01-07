@@ -2,10 +2,16 @@
 var searchForm = document.querySelector("#search-submit");
 var searchInput = document.querySelector("#search-text");
 var ourSearchHistory = JSON.parse(localStorage.getItem('seachHistory'));
+var trashBtn = document.querySelector('.fa-trash');
 
-
+// Add an Event Listener to the trash button to remove the history of searches
+trashBtn.addEventListener('click', function (){
+  localStorage.removeItem('searchHistory')
+  searchButtons.remove();
+})
 // Add Event Listener to the search sumit button that stores the past searches and redirect to a search result page
 searchForm.addEventListener("click", searchForCity);
+// searchInput.addEventListener('keydown', searchForCity);
 
   function searchForCity (event) {
     event.preventDefault();
@@ -52,10 +58,11 @@ searchForm.addEventListener("click", searchForCity);
   }); 
 
 // Dynamically create buttons for previous searches
+var searchButtons = document.querySelector('.search-buttons');
 createButtons();
 function createButtons (){
   var dropdownHistory = JSON.parse(localStorage.getItem('searchHistory'));
-  var searchButtons = document.querySelector('.search-buttons');
+  
   var searchHeader = document.createElement('h3');
     searchHeader.textContent = 'Search History';
     searchButtons.appendChild(searchHeader);
@@ -78,4 +85,3 @@ function createButtons (){
   }
 
 
-// Featch a weather API

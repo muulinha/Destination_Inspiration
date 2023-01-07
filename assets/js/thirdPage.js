@@ -1,6 +1,6 @@
 var select = document.getElementById("selectCurrencyDefault");
 var showDefaultCurrency = document.querySelector('.showDefaultCurrency');
-
+var saveBtn = document.querySelector(".saveBtn");
 
 var currencySelection = ["AED", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN", "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB", "BRL", "BSD", "BTN", "BWP", "BYN", "BZD", "CAD", "CDF", "CHF", "CLP", "CNY", "COP", "CRC", "CUP", "CVE", "CZK", "DJF", "DKK", "DOP", "DZD", "EGP", "ERN", "ETB", "EUR", "FJD", "FKP", "FOK", "GBP", "GEL", "GGP", "GHS", "GIP", "GMD", "GNF", "GTQ", "GYD", "HKD", "HNL", "HRK", "HTG", "HUF", "IDR", "ILS", "IMP", "INR", "IQD", "IRR", "ISK", "JEP", "JMD", "JOD", "JPY", "KES", "KGS", "KHR", "KID", "KMF", "KRW", "KWD", "KYD", "KZT", "LAK", "LBP", "LKR", "LRD", "LSL", "LYD", "MAD", "MDL", "MGA", "MKD", "MMK", "MNT", "MOP", "MRU", "MUR", "MVR", "MWK", "MXN", "MYR", "MZN", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD", "OMR", "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON", "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLE", "SOS", "SRD", "SSP", "STN", "SYP", "SZL", "THB", "TJS", "TMT", "TND", "TOP", "TRY", "TTD", "TVD", "TWD", "TZS", "UAH", "UGX", "USD", "UYU", "UZS", "VES", "VND", "VUV", "WST", "XAF", "XCD", "XDR", "XOF", "XPF", "YER", "ZAR", "ZMW", "ZWL"];
 
@@ -27,7 +27,7 @@ Array.from(selector).forEach((element) => {
       }, 100);
       setTimeout (function () {
       showDefaultCurrency.removeChild(showCurrencyEl);
-      }, 1400);
+      }, 1100);
     });
   });
 
@@ -267,12 +267,6 @@ var tempForm = document.getElementById("tempDefault");
         
         });
           //https://countries-cities.p.rapidapi.com/location/country/${destCountry}/576a507ee7msh03a8d40416350bbp1e0201jsnbd061cc4d364
-      
-      
-        
-
-
-
         
         fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/enriched/${baseCurr}/${destCurr}`)
         .then((res) => res.json())
@@ -421,9 +415,10 @@ function youTubeAPI(){
       )
  };
 
-  
-// END YOUTUBE VIDEO 
- 
-  
+      
+    // END YOUTUBE VIDEO 
+
+
+
     init();
   
