@@ -108,6 +108,10 @@ function printResults(resultObj) {
         if (!data.length) {
           console.log('No results found!');
           resultContentEl.innerHTML = '<h3>No results found, search again!</h3>';
+          let historySearch = JSON.parse(localStorage.getItem("searchHistory"));
+          historySearch.pop();
+          localStorage.setItem('searchHistory', JSON.stringify(historySearch));  /* works a sintended on the 1st page, but pops out multiple values from localstorage on the sceond page only, needs to be fixed */
+          searchButtons.remove("data-name", searchInputVal.value)
         } else {
           resultContentEl.textContent = '';
           for (var i = 0; i < data.length; i++) {
@@ -119,7 +123,7 @@ function printResults(resultObj) {
       });
   }
   // _________________________________________________________________________________
-    searchApi();
+    // searchApi();
   // _________________________________________________________________________________
   function handleSearchFormSubmit(event) {
     event.preventDefault();
