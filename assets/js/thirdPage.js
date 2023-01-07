@@ -373,40 +373,47 @@ var tempForm = document.getElementById("tempDefault");
 
     // END CONVERT CURRENCY CODE TO VALUES .................................................. 
 
-    // YOUTUBE VIDEO 
-    var videoTitle = document.getElementById("video-title");
-    var videoSearch = document.getElementById("video-search");
-    // var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
-    // var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
-    
-    
+// YOUTUBE VIDEO 
+var videoTitle1 = document.getElementById("video-title1");
+var videoSearch1 = document.getElementById("video-search1");
+var videoTitle2 = document.getElementById("video-title2");
+var videoSearch2 = document.getElementById("video-search2");
+// var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
+var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
+var youTubeSearchTerm = city + " " + country;
+var maxResults = 2;
+console.log(youTubeSearchTerm);
 
-    // function youTubeAPI(){
-    //   var request=
-    //   "https://youtube.googleapis.com/youtube/v3/search?key=" +
-    //   youTubeKey +
-    //   "&type=video&part=snippet&maxResults=1" +
-    //   "&q=" +
-    //   "10 best things to do" + userCitySelected
-    //   "10 best things to do" + userCitySelected
-      
-    //   console.log(request)
+
+function youTubeAPI(){
+  var request=
+  "https://youtube.googleapis.com/youtube/v3/search?key=" +
+  youTubeKey +
+  "&type=video&part=snippet&maxResults=" +
+  maxResults +
+  "&q=" +
+  "10 best things to do in " + youTubeSearchTerm;
   
-    //   fetch(request)   
-    //   .then(function(respose) {
-    //           return respose.json();  
-    //       })
-    //   .then(function(data){
-              
-    //       let video =data.items[0].id.videoId;
-    //       console.log(data);
-              
-    //       // show youTube video in html:
-    //       videoTitle.innerHTML += data.items[0].snippet.title
-    //       videoSearch.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video}"></iframe>`
-    //       }
-    //       )
-    //  };
+  console.log(request)
+
+  fetch(request)   
+  .then(function(respose) {
+          return respose.json();  
+      })
+  .then(function(data){
+          
+      let video1 =data.items[0].id.videoId;
+      let video2 =data.items[1].id.videoId;
+      console.log(data);
+          
+      // show youTube video and video title in html:
+      // videoTitle1.innerHTML += data.items[0].snippet.title
+      videoSearch1.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video1}"></iframe>`
+      // videoTitle2.innerHTML += data.items[1].snippet.title
+      videoSearch2.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video2}"></iframe>`
+      }
+      )
+ };
 
       
     // END YOUTUBE VIDEO 
