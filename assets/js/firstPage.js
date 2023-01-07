@@ -9,9 +9,17 @@ trashBtn.addEventListener('click', function (){
   localStorage.removeItem('searchHistory')
   searchButtons.remove();
 })
+
+// Enable search with an Enter key
+searchInput.addEventListener("keyup", function(event){
+  if (event.keyCode === 13){
+    event.preventDefault();
+    searchForm.click()
+  }
+})
+
 // Add Event Listener to the search sumit button that stores the past searches and redirect to a search result page
 searchForm.addEventListener("click", searchForCity);
-// searchInput.addEventListener('keydown', searchForCity);
 
   function searchForCity (event) {
     event.preventDefault();
@@ -59,11 +67,14 @@ searchForm.addEventListener("click", searchForCity);
 
 // Dynamically create buttons for previous searches
 var searchButtons = document.querySelector('.search-buttons');
+var searchHeader = document.createElement('h3');
 createButtons();
 function createButtons (){
   var dropdownHistory = JSON.parse(localStorage.getItem('searchHistory'));
-  
-  var searchHeader = document.createElement('h3');
+  if (dropdownHistory == null){
+    searchButtons.remove();
+    return;
+  }
     searchHeader.textContent = 'Search History';
     searchButtons.appendChild(searchHeader);
   for (var i = 0; i < dropdownHistory.length; i++){
@@ -74,7 +85,8 @@ function createButtons (){
     searchButton.addEventListener('click', clickListenerFor(searchButton));
     }
   }
-    
+  
+// Append a click event listener for each search button created in the previous function
     function clickListenerFor(button){
       return function (e){
       var citySearchName = button.dataset.name;

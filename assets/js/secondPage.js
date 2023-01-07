@@ -13,6 +13,7 @@ var state;
 var userLastSearch = localStorage.getItem("lastSearch");
 searchInputVal.setAttribute('value', userLastSearch);
 
+// Allow a user to search again for another city
 searchSubmitEl.addEventListener('click', function (event){
   searchApi();
   const userSearch = searchInputVal.value
@@ -30,7 +31,12 @@ searchSubmitEl.addEventListener('click', function (event){
   localStorage.setItem('searchHistory', JSON.stringify(old_data));
   
 });
-
+searchFormEl.addEventListener("keyup", function(event){
+  if (event.keyCode === 13){
+    event.preventDefault();
+    searchSubmitEl.click();
+  }
+})
 
 // _________________________________________________________________________________
 function printResults(resultObj) {
