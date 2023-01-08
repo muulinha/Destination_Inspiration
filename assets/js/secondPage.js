@@ -46,8 +46,8 @@ function printResults(resultObj) {
     var resultCard = document.createElement('div');
     var resultBody = document.createElement('a');
 
-
-    resultBody.classList.add('btn', 'btn-light', 'inline');
+    
+    resultBody.classList.add('btn', 'btn-light', 'inline','look');
     resultBody.setAttribute('href', "./thirdPage.html")
     // needs to direct it to the results page with the country/city input
     resultCard.append(resultBody);

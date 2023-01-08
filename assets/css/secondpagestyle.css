@@ -24,38 +24,101 @@ body {
     margin-top: 30px;
 }
 
+.btn-home-look {
+    background-color: var(--backgroud-main);
+    border-color: var(--backgroud-main);
+    color: var(--text-main);
+}
+
+.btn-home-look:hover {
+    background-color: var(--background-secondary);
+}
+
+
 #center {
     background-color: var(--backgroud-main);
     opacity: 0.8;
-    height: fit-content;
-    width: fit-content;
-    padding: 10px 100px;
+    padding: 2rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
+#search-form {
+    font-size: 1rem;
+    padding: 10px;
+}
 #search-input {
     text-align: center;
+    width:70%;
+    border-radius: 10px;
+}
+
+#search-submit {
+    border-radius: 10px;
+}
+
+#search-submit:hover {
+    background-color: var(--background-secondary);
 }
 
 p {
+    font-size: 1.5rem;
     color:var(--text-main);
+    text-align: center;
 }
 
-/* #search-from-and-results {
-   
+#result-content {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
 }
 
-#search-form {
+.look {
+    border-radius: 8px;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+a:hover {
+    background-color: var(--background-secondary);
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 844px) {
+
+    body{
+        background-color: var(--backgroud-main);
+        background-image: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        }
     
+    #home {
+        position: absolute;
+        float: right;
+    }
+
+    #home:hover {
+        background-color: var(--background-secondary);
+    }
+    .btn-home-look {
+        background-color: var(--text-main);
+        border-color: var(--text-main);
+        color: var(--backgroud-main)
+    }
+
+    #center {
+        /* display: flex;
+        flex-direction: column;
+        align-items: center; */
+        opacity: 1;
+    }
+
 }
-
-.destination {
-  
-} */
-
-/* #result-content {
-    
-} */
-
-/* @media screen and (max-width: 844px) {
-
-} */

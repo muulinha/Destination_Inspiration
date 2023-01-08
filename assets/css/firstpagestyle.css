@@ -51,6 +51,11 @@ p {
     border-radius: 10px;
 }
 
+#search-submit:hover {
+    background-color: var(--background-secondary);
+    opacity: 0.8;
+}
+
 h3 {
    font-size: 1.8rem;
    /* margin-bottom: 15px; */
@@ -64,7 +69,6 @@ h3 {
     /* background-color: var(--background-secondary); */
     max-width: 70%;
     border-radius: 5px;
-
 }
 
 .data-name-btn {
@@ -74,12 +78,17 @@ h3 {
 }
 
 #trash-icon {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 0 5px;
     border-radius: 10px;
     position: relative;
-    left:116px;
-    bottom: -38px;
+    left:122px;
+    bottom: -36px;
+}
+
+#trash-icon:hover {
+    background-color: var(--background-secondary);
+    opacity: 0.8; 
 }
 
 
@@ -95,7 +104,6 @@ h3 {
         flex-direction: column;
         align-items: center;
     }
-
 
     .search-buttons {
         display:flex;
