@@ -82,6 +82,7 @@ function createButtons (){
     searchButton.textContent = dropdownHistory[i];
     searchButtons.appendChild(searchButton);
     searchButton.setAttribute('data-name', dropdownHistory[i])
+    searchButton.classList.add('data-name-btn');
     searchButton.addEventListener('click', clickListenerFor(searchButton));
     }
   }
