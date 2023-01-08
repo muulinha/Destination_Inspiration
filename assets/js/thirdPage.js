@@ -146,9 +146,11 @@ var tempForm = document.getElementById("tempDefault");
 
         // get stored information
         function init() {
-                    
-            var storedTemp = localStorage.getItem('temp');
-            var storedCurrency = localStorage.getItem('currency');
+          
+
+          
+          var storedTemp = localStorage.getItem('temp');
+          var storedCurrency = localStorage.getItem('currency');
     
             radiobtnC = document.getElementById("tempC");
             radiobtnF = document.getElementById("tempF");
@@ -172,14 +174,16 @@ var tempForm = document.getElementById("tempDefault");
             } else {
             //radiobtnC.checked = false;
             radiobtnF.checked = true;
-            }   
+            } 
             
-            
-            fetchWeather();
-            fetchCurrency();
+
             // youTubeAPI() 
             // paused the call temporarily to avoid running out of daily quotes
 
+
+            fetchWeather();
+            chosenCity()
+            fetchCurrency();
 
             };
            
@@ -208,7 +212,9 @@ var tempForm = document.getElementById("tempDefault");
       var destCountry = localStorage.getItem('selectedCountry')
       var destCurr = localStorage.getItem('destCurrency');  
       var currentCurr = document.querySelector(".conversionRate");
+      var lastConversionRate = document.querySelector(".lastConversionRate");
       var lastCurr = document.querySelector(".lastRate");
+
       var differenceCurr = document.querySelector(".oneMonthChange");
       var upDown = document.querySelector(".upDownChange");
       var nameCurr = document.querySelector(".currencyName");
@@ -216,28 +222,37 @@ var tempForm = document.getElementById("tempDefault");
       var currSymbolID = document.querySelector(".currencySymbol");
       var currFlagUrl = document.querySelector(".currencyName");
       var cityStateCountry = document.querySelector(".chosenCity");
-
+         
       var city = localStorage.getItem("selectedCity")
       var state = localStorage.getItem("selectedState");
       var country = localStorage.getItem("selectedCountry")
 
-      var userCitySelected = city + "," + state + "," + country;
-      var cityStateCountry = document.querySelector(".chosenCity");
-
-      var city = localStorage.getItem("selectedCity")
-      var state = localStorage.getItem("selectedState");
-      var country = localStorage.getItem("selectedCountry")
-
-      var userCitySelected = city + "," + state + "," + country;
+      var userCitySelected = ""
 
 
 
       // chosen city
-      cityStateCountry.innerHTML = (" " + userCitySelected);
-        
-      // rate now
       
+      function chosenCity() {      
+      
+      if (state === "undefined") {
+        userCitySelected = (localStorage.getItem("selectedCity") + ", " + localStorage.getItem("destCountryName"))
+        console.log(userCitySelected);
+      } else {
+        userCitySelected = (localStorage.getItem("selectedCity") + ", " + state + ", " + localStorage.getItem("destCountryName"))
+        console.log(userCitySelected);
+      }  
+      
+ 
+      
+         cityStateCountry.innerHTML = (" " + userCitySelected);        
+      //location.reload()
+      
+    };
     
+    
+    // rate now
+
       function fetchCurrency() {
 
         const options = {
@@ -248,14 +263,14 @@ var tempForm = document.getElementById("tempDefault");
           }
         };
       
-        // //COUNTRY NAME
-          
-        // fetch('https://countries-cities.p.rapidapi.com/location/country/list', options)
-        // .then(response => response.json())
-        // .then(response => {
-        //   localStorage.setItem('destCountryName', response.countries[destCountry]);
-        // });
-        // // END COUNTRY NAME
+          //COUNTRY NAME
+        
+          fetch('https://countries-cities.p.rapidapi.com/location/country/list', options)
+          .then(response => response.json())
+          .then(response => {
+            localStorage.setItem('destCountryName', response.countries[destCountry]);
+          });
+          // END COUNTRY NAME
 
 
 
@@ -346,7 +361,9 @@ var tempForm = document.getElementById("tempDefault");
           
           // historic rate - html text  
           lastCurr = ("Last Month Rate: " + baseCurr + " 1 = " + destCurr + " " + (histRate).toFixed(4));
-
+          lastConversionRate.innerHTML = ("Last Month Rate: " + baseCurr + " 1 = " + destCurr + " " + (histRate).toFixed(4));
+          console.log(lastCurr)
+          
           // rate difference - html text
           var diff = ((currentRate - histRate)/histRate).toFixed(4) + "%";
           differenceCurr.innerHTML = "One Month Change: " + diff;
@@ -418,7 +435,12 @@ function youTubeAPI(){
       
     // END YOUTUBE VIDEO 
 
-
+    window.onload = function() {
+      if(!window.location.hash) {
+          window.location = window.location + '#loaded';
+          window.location.reload();
+      }
+  } 
 
     init();
-  
+    

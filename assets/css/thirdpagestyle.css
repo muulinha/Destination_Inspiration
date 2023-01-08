@@ -34,6 +34,7 @@ body {
     height: 95%;
     width: 60%;
     font-size: 1rem;
+    padding: 2rem;
 }
 
 .chosenCity {
@@ -48,7 +49,8 @@ h3 {
 
 .cards-last-page {
     color: var(--text-main);
-    background-color: var(--background-secondary);
+    background-color: var(--background-secondary);  
+    padding: 1rem;
 }
 
 #cards-weather-currency {
