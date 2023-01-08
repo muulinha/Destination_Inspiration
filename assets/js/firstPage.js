@@ -5,10 +5,10 @@ var ourSearchHistory = JSON.parse(localStorage.getItem('seachHistory'));
 var trashBtn = document.querySelector('.fa-trash');
 
 // Add an Event Listener to the trash button to remove the history of searches
-trashBtn.addEventListener('click', function (){
-  localStorage.removeItem('searchHistory')
-  searchButtons.remove();
-})
+// trashBtn.addEventListener('click', function (){
+//   localStorage.removeItem('searchHistory')
+//   searchButtons.remove();
+// })
 
 // Enable search with an Enter key
 searchInput.addEventListener("keyup", function(event){
@@ -68,6 +68,7 @@ searchForm.addEventListener("click", searchForCity);
 // Dynamically create buttons for previous searches
 var searchButtons = document.querySelector('.search-buttons');
 var searchHeader = document.createElement('h3');
+var trash = document.createElement('button');
 createButtons();
 function createButtons (){
   var dropdownHistory = JSON.parse(localStorage.getItem('searchHistory'));
@@ -77,11 +78,14 @@ function createButtons (){
   }
     searchHeader.textContent = 'Search History';
     searchButtons.appendChild(searchHeader);
+    trash.innerHTML = '<i class="fas fa-trash"></i>';
+    searchHeader.appendChild(trash);
   for (var i = 0; i < dropdownHistory.length; i++){
     var searchButton = document.createElement('button');
     searchButton.textContent = dropdownHistory[i];
     searchButtons.appendChild(searchButton);
-    searchButton.setAttribute('data-name', dropdownHistory[i])
+    searchButton.setAttribute('data-name', dropdownHistory[i]);
+    searchButton.classList.add('data-name-btn'); 
     searchButton.addEventListener('click', clickListenerFor(searchButton));
     }
   }

@@ -6,12 +6,13 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    color: var(--text-main);
-    height:100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-main);
+    height:100vh;
+    margin: 0;
     background-image: url(https://source.unsplash.com/1600x900/?travel);
     background-size: cover;
     background-position: center;
@@ -20,40 +21,80 @@ body {
 #center {
     background-color: var(--backgroud-main);
     opacity: 0.8;
-    height: fit-content;
-    width: fit-content;
-    padding:10px 100px;
+    width: 100%;
+    max-width: fit-content;
+    /* margin: 5rem; */
+    padding:2rem;
+    border-radius: 20px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; */
+}
+
+#user-line {
+   font-size: 1.5rem;
 }
 
 h1 {
     color:var(--text-main);
+    font-size: 3rem;
+    margin:0;
 }
 
 #search-text {
     text-align: center;
+    border-radius: 10px;
 }
 
-/* #search-submit {
+#search-submit {
+    border-radius: 10px;
     
-} */
+}
 
 h3 {
-   font-size: 1.5rem;
+   font-size: 1.3rem;
+   float: left;
 }
+
+.data-name-btn {
+    background-color: aqua;    
+}
+
+/* #history-card {
+    display: flex;
+} */
 
 .search-buttons {
     font-family: Arial, Helvetica, sans-serif;
     color: var(--text-main);
+    background-color: var(--background-secondary);
+    border-radius: 20px;
     font-size: 1rem;
-    padding: 10px 20px;
+    padding:10px;
+    width: fit-content;
+}  
+
+.trash-icon {
+    background-color: var(--backgroud-main);
+    
+
 }
 
-#trash-icon {
-    position: relative;
-    right: -100px;
-    bottom: -32px;
-}
+@media screen and (max-width: 844px) {
 
-/* @media screen and (max-width: 844px) {
+    #center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .search-buttons {
+        display:flex;
+        flex-direction: column;
+    }
 
-} */
+    /* #trash-icon {
+        position: absolute;
+        bottom: 0;
+    } */
+} 

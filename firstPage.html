@@ -23,22 +23,24 @@
 </head>
 <body>
     <center id="center">
-      <br>
-      <br>
-      <br>
-        <h1>Explore your next travel destination</h1>
-        <br>
-        <p>please, tipe what city would you like to explore</p>
-        <div>&nbsp;</div>
+  
+        <section id="user-line">
+          <h1>Explore your next travel destination</h1>
+          <br>
+          <p>What city would you like to explore?</p>
+          
+          
+            <input oninput="this.value = this.value.toUpperCase()" id="search-text" class="destination">
+              <button id="search-submit"><i class="fas fa-search"></i></button>
+          
+          <div>&nbsp;</div>
+        </section>
         
-           <input oninput="this.value = this.value.toUpperCase()" id="search-text" class="destination">
-            <button id="search-submit"><i class="fas fa-search"></i></button>
-        
-        <div>&nbsp;</div>
-
+        <section id="history-card">
         <div id="search-buttons" class="search-buttons">
-          <button id="trash-icon"><i class="fas fa-trash"></i></button>
+          <!-- <button id="trash-icon"><i class="fas fa-trash"></i></button> -->
         </div>
+      </section>
 
         </center>
         <div>&nbsp;</div>
