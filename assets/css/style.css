@@ -1,4 +1,3 @@
-   
       /* Tooltip text */
       .card .tooltext {
         visibility: hidden;
@@ -60,8 +59,11 @@ body {
 }
 
 .currencyFlag {
-  height: 20px;
-  width: 30px;
+  height: 40px;
+  width: 60px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button {
