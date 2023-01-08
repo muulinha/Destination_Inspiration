@@ -22,9 +22,9 @@
 </head>
 <body>
   <section id="home">
-    <a href="./firstPage.html" class="btn btn-primary" role="button" aria-pressed="true"><i class="fas fa-home" aria-hidden="true"></i></a>
+    <a href="./firstPage.html" class="btn btn-primary btn-home-look" role="button" aria-pressed="true"><i class="fas fa-home" aria-hidden="true"></i></a>
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-cog" aria-hidden="true"></i></button>
+    <button type="button" class="btn btn-primary btn-home-look" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-cog" aria-hidden="true"></i></button>
 </section>
   <div>&nbsp;</div>
 
@@ -67,8 +67,8 @@
   </div>
 
   <div>&nbsp;</div>
-<div id="three-cards">
-  <section class="card cards-last-page">                                   <!-- THIS IS THE WEATHER CARD-->
+<div id="weather-currency">
+  <section class="card cards-last-page weather ">                                   <!-- THIS IS THE WEATHER CARD-->
     <div><h3>Weather</h3></div>
     <div id="temperature">Temperature</div>
     <img src="" alt="" class="icon" width="50">
@@ -78,12 +78,10 @@
     <div id="temp-max">Weather Description</div>
     <div id="humidity">Weather Description</div>
     <div id="wind-speed">Weather Description</div>
+
+    <img src="" alt="" class="flag">
  
-
-   <img src="" alt="" class="flag">
 </section>
-
-    <div>&nbsp;</div>
 
       <section class="card cards-last-page currency" id="myTooltip" data-toggle="tooltip" data-placement="right" title="Last Month Rate">                                   <!-- THIS IS THE CURRENCY CARD-->
           <div><h3 class="currencyName"></h3><h5 class="currencyNameShort"></h5></div>
@@ -93,22 +91,15 @@
       </section>
   </div>
 
-    <div>&nbsp;</div>
-
+<div id="youtube">
     <section class="card cards-last-page video">
-      <div><h3>YouTube</h3></div>
-
-      <div id="results-YouTube">
-
-        <div id="video-search1" class="mock-up-video">
-          <h5 id="video-title1"></h5>
-        </div>
-
-      <div id="video-search2" class="mock-up-video">
-        <h5 id="video-title2"></h5>
-      </div>
-    </div>
+      <div id="youtube-header"><h3>YouTube</h3></div>
+      <div id="video-search1" class="video-search"></div>
+      <h5 id="video-title1"></h5>
+      <div id="video-search2" class="video-search"></div>
+      <h5 id="video-title2"></h5>
   </section>
+</div> 
 
 </section>
 

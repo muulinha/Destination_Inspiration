@@ -51,22 +51,3 @@
 *:focus {
   outline: none;
 }
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  background-color: #f1f9f9;
-}
-
-.currencyFlag {
-  height: 40px;
-  width: 60px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-button {
-  margin-left: 5px;
-  margin-right: 5px;
-}
