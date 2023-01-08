@@ -83,9 +83,13 @@ function printResults(resultObj) {
     
       console.log(country,city,state,lat,lon);
 
+      localStorage.setItem('destCountryName', "");
+
     })};
 // ________________________________________________________________________________
     
+
+
 
     // console.log(country);
     // console.log(city);
