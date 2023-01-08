@@ -57,3 +57,11 @@ h3 {
 /* @media screen and (max-width: 844px) {
 
 } */
+
+
+@media screen and (max-width: 500px) {
+    main,
+    nav {
+      flex-direction: column;
+    }
+  }
