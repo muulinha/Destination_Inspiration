@@ -4,11 +4,6 @@
     --background-secondary:rgba(174, 174, 174, 0.507);
     --text-main:white;
 }
-* {
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-}
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -28,39 +23,61 @@ body {
     margin-top: 30px;
 }
 
+.btn-home-look {
+    background-color: var(--backgroud-main);
+    border-color: var(--backgroud-main);
+    color: var(--text-main);
+}
+
+.btn-home-look:hover {
+    background-color: var(--background-secondary);
+}
+
 #center {
     background-color: var(--backgroud-main);
     opacity: 0.8;
-    height: 95%;
-    width: 60%;
+    height:fit-content;
+    width: 65%;
     font-size: 1rem;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .chosenCity {
     font-size: 2rem;
 }
 
+.currencyFlag {
+    height: 40px;
+    width: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 h3 {
     font-size: 1.5rem;
     color: var(--text-main);
     text-align: center;
- }
+}
 
 .cards-last-page {
     color: var(--text-main);
-    background-color: var(--background-secondary);  
-    padding: 1rem;
+    background-color: var(--background-secondary);
 }
 
-#cards-weather-currency {
+#weather-currency {
     display: flex;
+    align-items: center;
     justify-content:center;
+    word-wrap:wrap;
+    
 }
 
 .weather {
     width: 40%;
-    padding: 20px;
+    margin-right:5px;
+    
 }
 
 #weather-info {
@@ -69,19 +86,27 @@ h3 {
 
 .currency {
     width: 40%;
-    padding: 20px;
+    margin-left:5px;
+    
 }
 
-#results-YouTube{
+#youtube {
     display: flex;
-    justify-content:space-around;
     align-items: center;
+    justify-content: center; 
+}
+
+#youtube-header {
+    position: absolute;
+    top:0;
+    margin-top: 10px;
 }
 
 .video {
-   width: 90%;
-   padding: 20px;
+   width: 80%;
    display: flex;
+   flex-direction: row;
+   align-items: center;
    justify-content: center;
 }
 
@@ -91,11 +116,12 @@ h5 {
 }
 
 /* Temporary fixs to test css without calling youTubeApi */
-/* .mock-up-video {
+.video-search {
     background-image: url(../images/mock-up.avif);
     height: 315px;
     width: 420px;
-} */
+    margin:10px;
+}
 
 @media screen and (max-width: 844px) {
  
@@ -113,7 +139,12 @@ h5 {
    #center {
     display:flex;
     flex-direction: column;
+    opacity: 1;
+   }
 
+   #weather-currency {
+    display: flex;
+    flex-direction: column;
    }
 
    #cards-weather-currency {
@@ -121,7 +152,7 @@ h5 {
     align-items: center;
    }
 
-   #results-YouTube {
+   .video {
     display: flex;
     flex-direction: column;
    }
