@@ -26,22 +26,20 @@
 <body>
   
   <section id="home">
-    <a href="./firstPage.html" class="btn btn-primary" role="button" aria-pressed="true"><i class="fas fa-home" aria-hidden="true"></i></a>
+    <a href="./firstPage.html" class="btn btn-primary btn-home-look" role="button" aria-pressed="true"><i class="fas fa-home" aria-hidden="true"></i></a>
   </section>
 
   <section id="center">
       <center>
-            <div>&nbsp;</div>
             <form id="search-form" >
               <input oninput="this.value = this.value.toUpperCase()" id="search-input" class="destination">
                 <button id="search-submit"><i class="fas fa-search"></i></button>
               </form>
-            <div>&nbsp;</div>
       </center>
 
       <!-- SEARCH RESULTS -->
       <div >
-        <p>Your destination search found several<span class="lenth"></span>results, <br> Please click the one you would like to explore</p>
+        <p>Your search found several<span class="lenth"></span>results, <br> Click the one you would like to explore</p>
         <div id="result-content"></div>
       </div>
   </section>
