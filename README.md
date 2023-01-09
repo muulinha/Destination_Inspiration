@@ -36,22 +36,22 @@ Settings is shown in a modal window, that allows the user to choose:
 ## **Demonstration**
 Index page, with a search bar that requires a destination city, then press "search": 
 
-![Printscreen of the web application](./assets/images/pageone.jpg) 
+![Printscreen of the web application](./assets/images/first-page-screenshot.jpg) 
 
 A second page showing the search results, in case the same city name exists in several states and/or countries.
 The user is required to select the targeted city to travel.
 
-![Printscreen of the web application](./assets/images/pagetwo.jpg) 
+![Printscreen of the web application](./assets/images/second-page-screenshot.jpg) 
 
 
 Third page showing detailed information.
 
-![Printscreen of the web application](/./assets/images/pagethree.jpg) 
+![Printscreen of the web application](./assets/images/third-page-screenshot.png) 
 
 
 Setting modal showing currency and weather options.
 
-![Printscreen of the web application](./assets/images/settingsmodal.jpg) 
+![Printscreen of the web application](./assets/images/setting-modal-screenshot.jpg) 
 
 ## **Technologies Used**
 * HTML;
