@@ -5,6 +5,12 @@
     --text-main:white;
 }
 
+* {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    margin: 5px;
+  }
+
 body {
     display: flex;
     justify-content: center;
@@ -33,7 +39,7 @@ body {
 .btn-home-look:hover {
     background-color: var(--background-secondary);
 }
-/* End buttons home and settings */
+
 
 /* settings modal */
 #myModal {
@@ -82,9 +88,9 @@ body {
 #delSearchHistory:hover {
     background-color: var(--background-secondary);
 }
-/* End settings modal */
 
-/* Page content englove in box */
+
+/* Page content engloved in box */
 #center {
     font-size: 1rem;
     background-color: var(--backgroud-main);
@@ -110,7 +116,7 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
-/* End country title and country flag */
+
 
 /* 3 cards of information :weather, currency and youtube videos */
 h3 {
@@ -171,7 +177,35 @@ h3 {
     background-color: var(--backgroud-main);
     border-radius: 20px;
   }
-/* End weather-currency block */
+      /* Tooltip text */
+      .card .tooltext {
+        visibility: hidden;
+        width: 200px;
+        background-color: blue;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 10px; 
+       
+        /* Position the tooltip text - see examples below! */
+        position:relative;
+      } 
+      
+      .card .tooltext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 10%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: blue transparent transparent transparent;
+      }
+
+      /* Show the tooltip text when you mouse over the tooltip container */
+      .card:hover .tooltext {
+        visibility: visible;
+      }
 
 /* youtube content */
 .youtube {
