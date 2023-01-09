@@ -123,7 +123,7 @@ function printResults(resultObj) {
       });
   }
   // _________________________________________________________________________________
-    // searchApi();
+    searchApi();
   // _________________________________________________________________________________
   function handleSearchFormSubmit(event) {
     event.preventDefault();
