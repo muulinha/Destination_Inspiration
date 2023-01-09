@@ -40,26 +40,35 @@ searchFormEl.addEventListener("keyup", function(event){
 
 // _________________________________________________________________________________
 function printResults(resultObj) {
-    // console.log(resultObj);
-    // set up `<div>` to hold result content
-    
-    var resultCard = document.createElement('div');
-    var resultBody = document.createElement('a');
+  // console.log(resultObj);
+  // set up `<div>` to hold result content
+  
+  var resultCard = document.createElement('div');
+  var resultBody = document.createElement('a');
+  
 
-    
-    resultBody.classList.add('btn', 'btn-light', 'inline','look');
-    resultBody.setAttribute('href', "./thirdPage.html")
-    // needs to direct it to the results page with the country/city input
-    resultCard.append(resultBody);
-    var titleEl = document.createElement('h3');
-    titleEl.textContent = resultObj.name + ", " + resultObj.state + ", " + resultObj.country;
-    var imgCountry = document.createElement('img');
-    // imgCountry.src = flag;
-    // add country flag
+  resultBody.classList.add('btn', 'btn-light', 'inline');
+  resultBody.setAttribute('href', "./thirdPage.html")
+  // needs to direct it to the results page with the country/city input
+  resultCard.append(resultBody);
+  var titleEl = document.createElement('h3');
+
+  var stateInput = resultObj.state;
+  var stateValidation;
+  if(stateInput == null){
+    stateValidation = ""
+   } else {
+    stateValidation = ", " + stateInput
+   }
+
+  titleEl.textContent = resultObj.name + stateValidation + ", " + resultObj.country;
+  var imgCountry = document.createElement('img');
+  // imgCountry.src = flag;
+  // add country flag
 
 
-    resultBody.append(titleEl, imgCountry);
-    resultContentEl.append(resultCard);
+  resultBody.append(titleEl, imgCountry);
+  resultContentEl.append(resultCard);
 
 
 
