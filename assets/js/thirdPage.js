@@ -100,11 +100,6 @@ var tempForm = document.getElementById("tempDefault");
           .then((response) => response.json())
           .then((data) => this.displayWeather(data));
 
-          
-          
-
-          
-          
         }
         
         function displayWeather (data) {
@@ -138,11 +133,6 @@ var tempForm = document.getElementById("tempDefault");
 
 
 // Weather INFORMATION ________________
-
-
-
-
-
 
         // get stored information
         function init() {
@@ -178,9 +168,6 @@ var tempForm = document.getElementById("tempDefault");
             
 
             // youTubeAPI(); 
-            // paused the call temporarily to avoid running out of daily quotes
-
-
             fetchWeather();
             chosenCity()
             fetchCurrency();
@@ -229,8 +216,7 @@ var tempForm = document.getElementById("tempDefault");
 
       var userCitySelected = ""
 
-
-
+      
       // chosen city
       
       function chosenCity() {      
@@ -395,8 +381,8 @@ var videoTitle1 = document.getElementById("video-title1");
 var videoSearch1 = document.getElementById("video-search1");
 var videoTitle2 = document.getElementById("video-title2");
 var videoSearch2 = document.getElementById("video-search2");
-var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
-// var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
+// var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
+var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
 var youTubeSearchTerm = city + " " + country;
 var maxResults = 2;
 console.log(youTubeSearchTerm);
@@ -423,16 +409,14 @@ function youTubeAPI(){
       let video2 =data.items[1].id.videoId;
       console.log(data);
           
-      // show youTube video and video title in html:
-      // videoTitle1.innerHTML += data.items[0].snippet.title
-      videoSearch1.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video1}"></iframe>`
-      // videoTitle2.innerHTML += data.items[1].snippet.title
-      videoSearch2.innerHTML +=`<iframe width="420" height="315" src="https://www.youtube.com/embed/${video2}"></iframe>`
+      // show youTube video in html:
+      
+      videoSearch1.innerHTML +=`<iframe width="560" height="315" src="https://www.youtube.com/embed/${video1}"></iframe>`
+      videoSearch2.innerHTML +=`<iframe width="560" height="315" src="https://www.youtube.com/embed/${video2}"></iframe>`
       }
       )
  };
-
-      
+ 
     // END YOUTUBE VIDEO 
 
     window.onload = function() {

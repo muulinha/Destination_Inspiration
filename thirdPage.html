@@ -32,7 +32,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Settings</h5>
+          <h5 id="title" class="modal-title">Settings:</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -43,16 +43,18 @@
           </form>
         <div class="dropdownContainer"></div>
           <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Default Currency:
+            <button class="btn btn-secondary dropdown-toggle default" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Default Currency
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="selectCurrencyDefault">
             </div>
           </div>
           <div class ="showDefaultCurrency"></div>
         </div>
+        <div id="delete-searchs">
         <label><b>Historic Searches: </b></label>
-        <button class="settingsField" id="delSearchHistory">Delete History</button>
+        <button class="settingsField" id="delSearchHistory">Delete history</button>
+         </div>
         <div class="modal-footer">
           <button type="button" value ="Refresh" onclick="history.go(0)" class="btn btn-secondary saveBtn" data-bs-dismiss="modal">Save</button>
         </div>
@@ -69,8 +71,8 @@
   <div>&nbsp;</div>
 <div id="weather-currency">
   <section class="card cards-last-page weather ">                                   <!-- THIS IS THE WEATHER CARD-->
-    <div><h3>Weather<br></h3></div>
-      <div id="block">
+    <div id="weather-title"><h3><br>Weather</h3></div>
+      <div>
         <div id="temperature"></div>
         <img src="" alt="" class="icon" width="50">
         <div id="weather-description"></div>
@@ -81,15 +83,15 @@
         <div id="wind-speed"></div>
       </div>
   
-    <img src="" alt="" class="flag">
- 
 </section>
 
       <section class="card cards-last-page currency" id="myTooltip" data-toggle="tooltip" data-placement="right" title="Last Month Rate">                                   <!-- THIS IS THE CURRENCY CARD-->
-          <div><h3 class="currencyName"></h3><h5 class="currencyNameShort"></h5></div>
+          <div id="currency-title"><h3 class="currencyName"></h3><h5 class="currencyNameShort"></h5></div>
+          <div id="currency-info">
           <div class="conversionRate"></div>
           <div class="lastConversionRate"></div>
           <div class="oneMonthChange"></div><img id="currIndicator" src="">
+          </div>
       </section>
   </div>
 
@@ -99,10 +101,7 @@
       </div>
     <div id="videos">
       <div id="video-search1" class="video-search"></div>
-      <h5 id="video-title1"></h5>
       <div id="video-search2" class="video-search"></div>
-      <h5 id="video-title2"></h5>
-    </div>
   </section>
 </div> 
 

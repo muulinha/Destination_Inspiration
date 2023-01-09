@@ -11,8 +11,6 @@ body {
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     color: var(--text-main);
-    height:100vh;
-    margin: 0;
     background-image: url(https://source.unsplash.com/1600x900/?travel);
     background-size: cover;
     background-position: center;
@@ -37,21 +35,67 @@ body {
 }
 /* End buttons home and settings */
 
-/* modal settings */
-
+/* settings modal */
 #myModal {
-    background-color: var(--background-secondary);
-    color:black;
+    color:var(--backgroud-main);
 }
+
+.btn-close:hover {
+    background-color: var(--background-secondary);
+}
+
+.modal-content {
+    padding: 10px;
+}
+
+#tempDefault {
+    display: flex;
+    justify-content: center;
+}
+
+.default {
+    margin-left: 20px;
+}
+
+.default:hover {
+    background-color: var(--background-secondary);
+}
+
+.dropdown {
+    padding-top: 20px;
+}
+
+.showDefaultCurrency {
+    text-align: center;
+    padding-top: 10px;
+}
+
+#delete-searchs {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#delSearchHistory {
+    border-radius: 20px;
+}
+
+#delSearchHistory:hover {
+    background-color: var(--background-secondary);
+}
+/* End settings modal */
 
 /* Page content englove in box */
 #center {
     font-size: 1rem;
     background-color: var(--backgroud-main);
     opacity: 0.8;
-    /* height:90%; */
     width: 70%; 
     border-radius: 20px;
+}
+
+.saveBtn:hover {
+    background-color: var(--background-secondary);
+
 }
 
 /* Country title and country flag */
@@ -92,17 +136,28 @@ h3 {
     width: 50%;  
 }
 
-/* weather info */
-#block {
-    display: flex;
-    align-items: center;
-    justify-content:space-evenly;
-    text-align:center;
-}
 /* weather icon */
 .icon {
     background-color: var(--backgroud-main);
     border-radius: 20px;
+}
+
+/* currency info */
+
+.currency {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+
+}
+
+#currency-title {
+    padding-bottom: 60px;
+}
+
+#currency-info {
+   padding: 0px 0 30px 0 ; 
+
 }
 
 /* currency indicator icon */
@@ -119,12 +174,14 @@ h3 {
 /* End weather-currency block */
 
 /* youtube content */
-.youtube{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-    margin-bottom: 40px;
+.youtube {
+    margin:10px;
+}
+
+.video-search {
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
 }
 
 p {
@@ -134,22 +191,11 @@ p {
 
 #videos {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    
 }
-/* youtube video titles not showing at the moment*/
-/* h5 {
-    font-size: 1rem;
-    text-align:center;
-} */
 
-/* Temporary fixs to test css without calling youTubeApi */
-.video-search {
-    background-image: url(../images/mock-up.avif);
-    height: 315px;
-    width: 420px;
-    margin:10px;
-}
 /* End youtube content */
 
 /* Responsive code */
@@ -172,8 +218,8 @@ p {
    }
 
    .cards-last-page {
-    width: 90%;
-    height: fit-content;
+    width: 100%;
+    padding: 50px;
     }
  
     #weather-currency {
@@ -182,18 +228,13 @@ p {
         align-items: center;
     }
 
-    #block {
+    .youtube {
+        margin: 0;
+        padding: 0;
+    }
+
+    #videos {
         display: flex;
         flex-direction: column;
     }
-
-   .youtube {
-    display: flex;
-    flex-direction: column;
-   }
-
-   #videos {
-    display: flex;
-    flex-direction: column;
-   }
 }
