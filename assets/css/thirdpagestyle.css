@@ -18,6 +18,7 @@ body {
     background-position: center;
 }
 
+/* buttons home and settings */
 #home {
     position: absolute;
     top: 0;
@@ -34,17 +35,26 @@ body {
 .btn-home-look:hover {
     background-color: var(--background-secondary);
 }
+/* End buttons home and settings */
 
+/* modal settings */
+
+#myModal {
+    background-color: var(--background-secondary);
+    color:black;
+}
+
+/* Page content englove in box */
 #center {
     font-size: 1rem;
     background-color: var(--backgroud-main);
     opacity: 0.8;
-    height:fit-content;
-    width: 70%;
-    padding: 1rem;
+    /* height:90%; */
+    width: 70%; 
     border-radius: 20px;
 }
 
+/* Country title and country flag */
 .chosenCity {
     font-size: 3rem;
 }
@@ -56,8 +66,9 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+/* End country title and country flag */
 
-
+/* 3 cards of information :weather, currency and youtube videos */
 h3 {
     font-size: 2rem;
     color: var(--text-main);
@@ -67,9 +78,9 @@ h3 {
 .cards-last-page {
     color: var(--text-main);
     background-color:var(--background-secondary);
-    
 }
 
+/* weather-currency block */
 #weather-currency {
     display: flex;
     justify-content:center;
@@ -77,55 +88,60 @@ h3 {
     font-size: 1.5rem;
 }
 
-.weather {
+.weather, .currency {
     width: 50%;  
 }
 
+/* weather info */
 #block {
     display: flex;
     align-items: center;
-    justify-content:space-between;
+    justify-content:space-evenly;
     text-align:center;
 }
-
-
-.currency {
-    width: 50%;
+/* weather icon */
+.icon {
+    background-color: var(--backgroud-main);
+    border-radius: 20px;
 }
 
+/* currency indicator icon */
 #currIndicator {
-    height: 15px;
-    width: 15px;
+    height: 30px;
+    width: 33px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding:2px 4px ;
+    background-color: var(--backgroud-main);
+    border-radius: 20px;
   }
+/* End weather-currency block */
 
-#youtube {
+/* youtube content */
+.youtube{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    margin-bottom: 40px;
+}
+
+p {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#videos {
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
 }
-
-/* #youtube-header {
-    position: absolute;
-    top:0;
-    margin-top: 10px;
-} */
-
-.video {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: center;
-   width: 80%;
-   /* background-color: var(--background-secondary) transparent 0 ; */
-}
-
-h5 {
+/* youtube video titles not showing at the moment*/
+/* h5 {
     font-size: 1rem;
     text-align:center;
-}
+} */
 
 /* Temporary fixs to test css without calling youTubeApi */
 .video-search {
@@ -134,7 +150,9 @@ h5 {
     width: 420px;
     margin:10px;
 }
+/* End youtube content */
 
+/* Responsive code */
 @media screen and (max-width: 844px) {
  
     body {
@@ -144,8 +162,7 @@ h5 {
 
    #home {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
    } 
 
    #center {
@@ -154,19 +171,29 @@ h5 {
     opacity: 1;
    }
 
-   #weather-currency {
+   .cards-last-page {
+    width: 90%;
+    height: fit-content;
+    }
+ 
+    #weather-currency {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #block {
+        display: flex;
+        flex-direction: column;
+    }
+
+   .youtube {
     display: flex;
     flex-direction: column;
    }
 
-   #cards-weather-currency {
-    flex-direction: column;
-    align-items: center;
-   }
-
-   .video {
+   #videos {
     display: flex;
     flex-direction: column;
    }
-   
 }
