@@ -1,4 +1,3 @@
-// Declare variables
 var resultContentEl = document.querySelector('#result-content');
 var searchFormEl = document.querySelector('#search-form');
 var searchInputVal = document.querySelector('#search-input');
@@ -38,10 +37,10 @@ searchFormEl.addEventListener("keyup", function(event){
   }
 })
 
+
+
 // _________________________________________________________________________________
 function printResults(resultObj) {
-  // console.log(resultObj);
-  // set up `<div>` to hold result content
   
   var resultCard = document.createElement('div');
   var resultBody = document.createElement('a');
@@ -49,7 +48,6 @@ function printResults(resultObj) {
 
   resultBody.classList.add('btn', 'btn-light', 'inline');
   resultBody.setAttribute('href', "./thirdPage.html")
-  // needs to direct it to the results page with the country/city input
   resultCard.append(resultBody);
   var titleEl = document.createElement('h3');
 
@@ -63,14 +61,9 @@ function printResults(resultObj) {
 
   titleEl.textContent = resultObj.name + stateValidation + ", " + resultObj.country;
   var imgCountry = document.createElement('img');
-  // imgCountry.src = flag;
-  // add country flag
-
 
   resultBody.append(titleEl, imgCountry);
   resultContentEl.append(resultCard);
-
-
 
 // ________________________________________________________________________________
     resultBody.addEventListener("click", function(event) {
@@ -84,28 +77,21 @@ function printResults(resultObj) {
       lat = resultObj.lat;
       lon = resultObj.lon;
 
-      localStorage.setItem('selectedCity', city);   // Lucus to store city name here!!
-      localStorage.setItem('selectedState', state) ;  // Lucus to store state name here!!
-      localStorage.setItem('selectedCountry', country);   // Lucus to store country code here!!
-      localStorage.setItem('selectedLat', lat);   // Lucus to store country code here!!
-      localStorage.setItem('selectedLon', lon);   // Lucus to store country code here!!
+      localStorage.setItem('selectedCity', city);   
+      localStorage.setItem('selectedState', state) ;  
+      localStorage.setItem('selectedCountry', country);   
+      localStorage.setItem('selectedLat', lat);   
+      localStorage.setItem('selectedLon', lon);   
     
       console.log(country,city,state,lat,lon);
 
       localStorage.setItem('destCountryName', "");
 
     })};
-// ________________________________________________________________________________
-    
-
-
-
-    // console.log(country);
-    // console.log(city);
-    // console.log(state);
- 
-  
   // _________________________________________________________________________________
+
+
+
   function searchApi() {
     var locQueryUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + searchInputVal.value + '&limit=10&appid=' + rapidAPI;
      fetch(locQueryUrl)
@@ -116,14 +102,13 @@ function printResults(resultObj) {
         return response.json();
       })
       .then(function (data) {
-        // write query to page so user knows what they are viewing
-        // console.log(data);
         if (!data.length) {
           console.log('No results found!');
           resultContentEl.innerHTML = '<h3>No results found, search again!</h3>';
+
           let historySearch = JSON.parse(localStorage.getItem("searchHistory"));
           historySearch.pop();
-          localStorage.setItem('searchHistory', JSON.stringify(historySearch));  /* works a sintended on the 1st page, but pops out multiple values from localstorage on the sceond page only, needs to be fixed */
+          localStorage.setItem('searchHistory', JSON.stringify(historySearch)); 
           searchButtons.remove("data-name", searchInputVal.value)
         } else {
           resultContentEl.textContent = '';
@@ -136,7 +121,12 @@ function printResults(resultObj) {
       });
   }
   // _________________________________________________________________________________
+
     searchApi();
+  
+  
+  
+  
   // _________________________________________________________________________________
   function handleSearchFormSubmit(event) {
     event.preventDefault();
@@ -147,32 +137,9 @@ function printResults(resultObj) {
     searchApi(searchInputVal);
   }
   // _________________________________________________________________________________
-  // _________________________________________________________________________________
+
 
   searchFormEl.addEventListener('submit', handleSearchFormSubmit);
-
-
-  // Fetch from Country-cities API _____________________________
-  // async function fetchCountryFlag (){
-  //   const options = {
-  //       method: 'GET',
-  //       headers: {
-  //           'X-RapidAPI-Key': '576a507ee7msh03a8d40416350bbp1e0201jsnbd061cc4d364',
-  //           'X-RapidAPI-Host': 'countries-cities.p.rapidapi.com'
-  //       }
-  //   };
-  //   // https://rapidapi.com/natkapral/api/countries-cities
-  //   await fetch('https://countries-cities.p.rapidapi.com/location/country/' + "AU", options)
-  //       .then(response => response.json())
-  //       .then(response => {
-  //           flag = response.flag.file;
-            
-  //   });
-  // };
-  // End _________________________________________________________
-
-
-
 
   function fetchCountry() {
 
@@ -185,28 +152,14 @@ function printResults(resultObj) {
     };
   
     //COUNTRY NAME
-    
-    var destCountry = localStorage.getItem('selectedCountry')
+        var destCountry = localStorage.getItem('selectedCountry')
 
     fetch('https://countries-cities.p.rapidapi.com/location/country/list', options)
     .then(response => response.json())
     .then(response => {
       localStorage.setItem('destCountryName', response.countries[destCountry]);
-
-      // console.log(destCountry)
     });
-
     // END COUNTRY NAME
   };
-
-
-
-
-      // store city state and country in local storage
-
-      // localStorage.setItem('selectedCity', city)   // Lucus to store city name here!!
-      // localStorage.setItem('selectedState', state)   // Lucus to store state name here!!
-      // localStorage.setItem('selectedCountry',country)   // Lucus to store country code here!!
-
-
+ 
       fetchCountry();
