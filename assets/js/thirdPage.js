@@ -382,7 +382,8 @@ var videoSearch1 = document.getElementById("video-search1");
 var videoTitle2 = document.getElementById("video-title2");
 var videoSearch2 = document.getElementById("video-search2");
 // var youTubeKey ="AIzaSyBSdv8yJFcPRx4-NrqPkTNNlIWHp4tZFjQ";
-var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
+// var youTubeKey ="AIzaSyCy8X1DV3uhVVhtCDYHDppA67-StdHfdVw";
+var youTubeKey = "AIzaSyBTmwca2rbdi9czYsSLCQgof_-Bz1NyTYc"
 var youTubeSearchTerm = city + " " + country;
 var maxResults = 2;
 console.log(youTubeSearchTerm);
