@@ -60,9 +60,8 @@ function printResults(resultObj) {
    }
 
   titleEl.textContent = resultObj.name + stateValidation + ", " + resultObj.country;
-  var imgCountry = document.createElement('img');
 
-  resultBody.append(titleEl, imgCountry);
+  resultBody.append(titleEl);
   resultContentEl.append(resultCard);
 
 // ________________________________________________________________________________
