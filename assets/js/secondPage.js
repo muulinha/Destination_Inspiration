@@ -92,7 +92,7 @@ function printResults(resultObj) {
 
 
   function searchApi() {
-    var locQueryUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + searchInputVal.value + '&limit=10&appid=' + rapidAPI;
+    var locQueryUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchInputVal.value + '&limit=10&appid=' + rapidAPI;
      fetch(locQueryUrl)
       .then(function (response) {
         if (!response.ok) {
