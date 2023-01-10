@@ -1,6 +1,6 @@
 # **Destination Inspiration**
 
-This web application can be accessed here -> *https://muulinha.github.io/Project1/*
+This web application can be accessed here -> *https://muulinha.github.io/Destination_Inspiration/*
 
 ##  **Description**
 The "Destination Inspiration" is a web application that lets the user choose any city in the world to travel.
