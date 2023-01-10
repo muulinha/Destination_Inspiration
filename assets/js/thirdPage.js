@@ -167,7 +167,7 @@ var tempForm = document.getElementById("tempDefault");
             } 
             
 
-            // youTubeAPI(); 
+            youTubeAPI(); 
             fetchWeather();
             chosenCity()
             fetchCurrency();
